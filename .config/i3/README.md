@@ -3,3 +3,4 @@
 - `twmn`
 - `alsa-utils`
 - `light-git`
+- `feh`
