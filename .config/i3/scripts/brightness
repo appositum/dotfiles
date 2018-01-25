@@ -1,0 +1,14 @@
+#!/bin/sh
+
+brightness="$(light)"
+brightness=${brightness:0:-3}
+
+if [ $brightness -gt 70 ];then
+	icon=""
+elif [ $brightness -lt 40 ];then
+	icon=""
+else
+	icon=""
+fi
+
+echo "$icon $brightness"

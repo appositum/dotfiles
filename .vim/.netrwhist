@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/phantom/.vim'
+let g:netrw_dirhist_2='/home/phantom/.config/fish'
+let g:netrw_dirhist_3='/home/phantom/Documents/Python'
+let g:netrw_dirhist_4='/home/phantom/.vim'
+let g:netrw_dirhist_5='/home/phantom'
+let g:netrw_dirhist_6='/home/phantom/.config'
+let g:netrw_dirhist_7='/home/phantom/.config/fish'
+let g:netrw_dirhist_8='/home/phantom'
+let g:netrw_dirhist_9='/home/phantom/.vim'

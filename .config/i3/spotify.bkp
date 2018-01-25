@@ -1,0 +1,5 @@
+[song]
+command=xprop -name "Spotify Premium - Linux Preview" _NET_WM_ICON_NAME|\cut -d "\"" -f 2|cut -b 11-
+label=
+interval=1
+color=#2ebd59
