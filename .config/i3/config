@@ -151,10 +151,17 @@ assign [class="Firefox"] $workspace2
 assign [class="brave"] $workspace2
 assign [class="Terminator"] $workspace3
 assign [class="Subl"] $workspace3
+assign [class="Atom"] $workspace3
 assign [class="Nautilus"] $workspace4
 assign [class="Typora"] $workspace4
 assign [class="spotify"] $workspace5
 assign [class="gitkraken"] $workspace6
+
+# i3 gaps
+hide_edge_borders smart
+gaps inner 10
+gaps outer 5
+smart_gaps on
 
 # Programs
 bindsym $mod+Shift+f exec firefox
@@ -168,7 +175,7 @@ bindsym $mod+n exec nautilus
 #for_window [class=""] floating enable
 
 # No borders for all windows
-for_window [class="^.*"] border none
+for_window [class="^.*"] border pixel 4
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -218,8 +225,6 @@ bar {
 	}
 }
 
-# i3 gaps
-hide_edge_borders both
 
 # Lock screen
 bindsym $mod+Shift+x exec lock
@@ -252,10 +257,11 @@ exec_always setxkbmap -layout br
 exec_always xinput set-prop 12 'libinput Tapping Enabled' 1
 exec_always xinput set-prop 12 'libinput Natural Scrolling Enabled' 1
 
-exec_always cerebro
 exec_always twmnd
 
 # Screenshot with scrot
 #bindsym --release $mod+Shift+s exec scrot -z -s
 bindsym Print exec scrot -z
 bindsym --release $mod+Print exec scrot -z -s
+
+exec_always compton -cCfG -b --vsync opengl
