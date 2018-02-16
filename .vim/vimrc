@@ -1,9 +1,11 @@
 syntax on
-colorscheme monokai 
-set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim/
+colorscheme nord
+"set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim/"
+let g:airline_powerline_fonts = 1
 set number
+set expandtab
 set tabstop=4
-set softtabstop=0 noexpandtab
+set softtabstop=0
 set shiftwidth=4
 set laststatus=2
 set showtabline=1
