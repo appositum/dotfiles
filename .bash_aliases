@@ -11,8 +11,6 @@ alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
-alias pip3='sudo python3 -m pip'
-
 # Tools
 alias harv='/tools/harv/theHarvester.py'
 alias sqlmap='/tools/sqlmap/sqlmap.py'
