@@ -6,7 +6,7 @@
 " Website:     https://wakatime.com/
 " ============================================================================
 
-let s:VERSION = '7.0.4'
+let s:VERSION = '7.1.1'
 
 
 " Init {{{
@@ -42,7 +42,7 @@ let s:VERSION = '7.0.4'
     if s:home == '$WAKATIME_HOME'
         let s:home = expand("$HOME")
     endif
-    let s:cli_location = expand("<sfile>:p:h") . '/packages/wakatime/cli.py'
+    let s:cli_location = substitute(substitute(expand("<sfile>:p:h"), '\', '/', 'g'), '/plugin$', '', '') . '/packages/wakatime/cli.py'
     let s:config_file = s:home . '/.wakatime.cfg'
     let s:default_configs = ['[settings]', 'debug = false', 'hidefilenames = false', 'ignore =', '    COMMIT_EDITMSG$', '    PULLREQ_EDITMSG$', '    MERGE_MSG$', '    TAG_EDITMSG$']
     let s:data_file = s:home . '/.wakatime.data'
@@ -221,8 +221,10 @@ let s:VERSION = '7.0.4'
         return expand("%:p")
     endfunction
 
-    function! s:EscapeArg(arg)
-        return substitute(shellescape(a:arg), '!', '\\!', '')
+    function! s:SanitizeArg(arg)
+        let sanitized = shellescape(a:arg)
+        let sanitized = substitute(sanitized, '!', '\\!', 'g')
+        return sanitized
     endfunction
 
     function! s:JsonEscape(str)
@@ -232,7 +234,7 @@ let s:VERSION = '7.0.4'
     function! s:JoinArgs(args)
         let safeArgs = []
         for arg in a:args
-            let safeArgs = safeArgs + [s:EscapeArg(arg)]
+            let safeArgs = safeArgs + [s:SanitizeArg(arg)]
         endfor
         return join(safeArgs, ' ')
     endfunction
@@ -248,7 +250,7 @@ let s:VERSION = '7.0.4'
         if s:has_reltime
             return split(reltimestr(reltime()))[0]
         endif
-        return printf('%d', localtime())
+        return s:n2s(localtime())
     endfunction
 
     function! s:AppendHeartbeat(file, now, is_write, last)
@@ -277,6 +279,46 @@ let s:VERSION = '7.0.4'
         endif
     endfunction
 
+    function! s:GetPythonBinary()
+        let python_bin = g:wakatime_PythonBinary
+        if !filereadable(python_bin)
+            let paths = ['python3']
+            if s:IsWindows()
+                let pyver = 39
+                while pyver >= 26
+                    let paths = paths + [printf('/Python%d/pythonw', pyver), printf('/python%d/pythonw', pyver), printf('/Python%d/python', pyver), printf('/python%d/python', pyver)]
+                    let pyver = pyver - 1
+                endwhile
+            else
+                let paths = paths + ['/usr/bin/python3', '/usr/local/bin/python3', '/usr/bin/python3.6', '/usr/local/bin/python3.6', '/usr/bin/python', '/usr/local/bin/python', '/usr/bin/python2', '/usr/local/bin/python2']
+            endif
+            let paths = paths + ['python']
+            let index = 0
+            let limit = len(paths)
+            while index < limit
+                if filereadable(paths[index])
+                    let python_bin = paths[index]
+                    let index = limit
+                endif
+                let index = index + 1
+            endwhile
+        endif
+        if s:IsWindows() && filereadable(printf('%sw', python_bin))
+            let python_bin = printf('%sw', python_bin)
+        endif
+        return python_bin
+    endfunction
+
+    function! s:GetCommandPrefix()
+        if exists("g:wakatime_OverrideCommandPrefix") && g:wakatime_OverrideCommandPrefix
+            let prefix = [g:wakatime_OverrideCommandPrefix]
+        else
+            let python_bin = s:GetPythonBinary()
+            let prefix = [python_bin, '-W', 'ignore', s:cli_location]
+        endif
+        return prefix
+    endfunction
+
     function! s:SendHeartbeats()
         let start_time = localtime()
         let stdout = ''
@@ -294,16 +336,9 @@ let s:VERSION = '7.0.4'
             let extra_heartbeats = ''
         endif
 
-        let python_bin = g:wakatime_PythonBinary
-        if s:IsWindows()
-            if python_bin == 'python'
-                let python_bin = 'pythonw'
-            endif
-        endif
-        let cmd = [python_bin, '-W', 'ignore', s:cli_location]
-        let cmd = cmd + ['--entity', heartbeat.entity]
+        let cmd = s:GetCommandPrefix() + ['--entity', heartbeat.entity]
         let cmd = cmd + ['--time', heartbeat.time]
-        let cmd = cmd + ['--plugin', printf('vim/%d vim-wakatime/%s', v:version, s:VERSION)]
+        let cmd = cmd + ['--plugin', printf('vim/%s vim-wakatime/%s', s:n2s(v:version), s:VERSION)]
         if heartbeat.is_write
             let cmd = cmd + ['--write']
         endif
@@ -321,7 +356,12 @@ let s:VERSION = '7.0.4'
         endif
 
         if s:has_async
-            let job = job_start([&shell, &shellcmdflag, s:JoinArgs(cmd)], {
+            if s:IsWindows()
+                let job_cmd = [&shell, &shellcmdflag] + cmd
+            else
+                let job_cmd = [&shell, &shellcmdflag, s:JoinArgs(cmd)]
+            endif
+            let job = job_start(job_cmd, {
                 \ 'stoponexit': '',
                 \ 'callback': {channel, output -> s:AsyncHandler(output, cmd)}})
             if extra_heartbeats != ''
@@ -329,11 +369,12 @@ let s:VERSION = '7.0.4'
                 call ch_sendraw(channel, extra_heartbeats . "\n")
             endif
         elseif s:nvim_async
+            let s:nvim_async_output = ['']
             let job = jobstart([&shell, &shellcmdflag, s:JoinArgs(cmd)], {
                 \ 'detach': 1,
-                \ 'on_stdout': function('s:AsyncNeovimHandler'),
-                \ 'on_stderr': function('s:AsyncNeovimHandler'),
-                \ 'on_exit': function('s:AsyncNeovimHandler')})
+                \ 'on_stdout': function('s:NeovimAsyncOutputHandler'),
+                \ 'on_stderr': function('s:NeovimAsyncOutputHandler'),
+                \ 'on_exit': function('s:NeovimAsyncExitHandler')})
             if extra_heartbeats != ''
                 call jobsend(job, extra_heartbeats . "\n")
             endif
@@ -413,9 +454,18 @@ let s:VERSION = '7.0.4'
         endif
     endfunction
 
-    function! s:AsyncNeovimHandler(job_id, output, event)
-        if s:is_debug_on && a:output != ''
-            echoerr '[WakaTime] Error: ' . a:output
+    function! s:NeovimAsyncOutputHandler(job_id, output, event)
+        let s:nvim_async_output[-1] .= a:output[0]
+        call extend(s:nvim_async_output, a:output[1:])
+    endfunction
+
+    function! s:NeovimAsyncExitHandler(job_id, exit_code, event)
+        let output = s:StripWhitespace(join(s:nvim_async_output, "\n"))
+        if a:exit_code == 104
+            let output .= 'Invalid API Key'
+        endif
+        if (s:is_debug_on || a:exit_code == 103 || a:exit_code == 104) && (a:exit_code != 0 || output != '')
+            echoerr printf('[WakaTime] Error %d: %s', a:exit_code, output)
         endif
     endfunction
 
@@ -423,7 +473,7 @@ let s:VERSION = '7.0.4'
         " Add a milisecond to a:time.
         " Time prevision doesn't matter, but order of heartbeats does.
         if !(a:time_str =~ "\.")
-            let millisecond = printf('%d', a:loop_count)
+            let millisecond = s:n2s(a:loop_count)
             while strlen(millisecond) < 6
                 let millisecond = '0' . millisecond
             endwhile
@@ -450,9 +500,13 @@ let s:VERSION = '7.0.4'
         let s:last_heartbeat = {'last_activity_at': a:last_activity_at, 'last_heartbeat_at': a:last_heartbeat_at, 'file': a:file}
     endfunction
 
+    function! s:n2s(number)
+        return substitute(printf('%d', a:number), ',', '.', '')
+    endfunction
+
     function! s:SetLastHeartbeat(last_activity_at, last_heartbeat_at, file)
         call s:SetLastHeartbeatInMemory(a:last_activity_at, a:last_heartbeat_at, a:file)
-        call writefile([substitute(printf('%d', a:last_activity_at), ',', '.', ''), substitute(printf('%d', a:last_heartbeat_at), ',', '.', ''), a:file], s:data_file)
+        call writefile([s:n2s(a:last_activity_at), s:n2s(a:last_heartbeat_at), a:file], s:data_file)
     endfunction
 
     function! s:EnoughTimePassed(now, last)

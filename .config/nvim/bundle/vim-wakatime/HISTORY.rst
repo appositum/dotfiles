@@ -3,6 +3,45 @@ History
 -------
 
 
+7.1.1 (2018-04-04)
+++++++++++++++++++
+
+- Force forward slash for wakatime-cli path on Windows.
+  `#56 <https://github.com/wakatime/vim-wakatime/issues/56>`_
+
+
+7.1.0 (2018-04-03)
+++++++++++++++++++
+
+- Detect python binary from common paths.
+
+
+7.0.7 (2018-03-15)
+++++++++++++++++++
+
+- Upgrade wakatime-cli to v10.1.3.
+- Smarter C vs C++ vs Objective-C language detection.
+
+
+7.0.6 (2018-03-15)
+++++++++++++++++++
+
+- Upgrade wakatime-cli to v10.1.2.
+- Detect dependencies from Swift, Objective-C, TypeScript and JavaScript files.
+- Categorize .mjs files as JavaScript.
+  `#wakatime121 <https://github.com/wakatime/wakatime/issues/121>`_
+- Detect dependencies from Elm, Haskell, Haxe, Kotlin, Rust, and Scala files.
+- Improved Matlab vs Objective-C language detection.
+  `#wakatime129 <https://github.com/wakatime/wakatime/issues/129>`_
+
+
+7.0.5 (2018-01-28)
+++++++++++++++++++
+
+- Correctly handle async output in Neovim as list not string.
+  `#62 <https://github.com/wakatime/vim-wakatime/issues/62>`_
+
+
 7.0.4 (2018-01-04)
 ++++++++++++++++++
 

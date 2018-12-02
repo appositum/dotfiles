@@ -1,21 +1,21 @@
 set nocompatible
 filetype off
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-call vundle#end()
+"set rtp+=~/.config/nvim/bundle/Vundle.vim
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'wakatime/vim-wakatime'
+"call vundle#end()
 filetype plugin indent on
-
+set encoding=utf-8
 
 syntax on
 colorscheme nord
-"set rtp+=/usr/lib/python3.6/site-packages/powerline/bindings/vim/"
-let g:airline_powerline_fonts = 1
 set number
+set clipboard=unnamed
 set expandtab
-set tabstop=4
+set tabstop=2
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
 set laststatus=2
 set showtabline=1
 set t_Co=256
@@ -51,7 +51,7 @@ let g:NERDTreeIndicatorMapCustom = {
 	\ "Unknown"   : "?"
 	\ }
 
-
+" cursor
 if &term == 'screen-256color' || &term == 'xterm-256color'
     let &t_SI = "\<Esc>[5 q"
     let &t_EI = "\<Esc>[1 q"
@@ -75,8 +75,6 @@ set number relativenumber
 autocmd InsertEnter * :set number norelativenumber
 autocmd InsertLeave * :set number relativenumber
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 " Haskell stuff
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -86,9 +84,25 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 let g:haskell_indent_let = 0
-let g:haskell_indent_where = 6
-let g:haskell_indent_case = 4
+let g:haskell_indent_where = 2
+let g:haskell_indent_case = 2
 let g:haskell_indent_after_bare_where = 2
-let g:haskell_indent_do = 3
+let g:haskell_indent_do = 2
 let g:haskell_indent_in = 0
-let g:haskell_indent_guard = 4
+let g:haskell_indent_guard = 2
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+" nord configs
+let g:nord_italic = 1
+let g:nord_comment_brightness = 20
+let g:nord_underline = 1
+let g:nord_uniform_status_lines = 1
+let g:nord_italic_comments = 1
+
+" nord lightline
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
