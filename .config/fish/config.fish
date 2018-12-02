@@ -1,17 +1,12 @@
 # Package management
-alias inst='sudo pacman -S'
-alias remove='sudo pacman -R'
-alias update='sudo pacman -Syu'
-
-alias insty='yaourt -S'
-alias removy='yaourt -R'
+alias inst='sudo apt install'
+alias remove='sudo apt remove'
+alias update='sudo apt update; sudo apt upgrade'
 
 # tar management
 alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
-
-alias pip3='sudo python3 -m pip'
 
 # Tools
 alias harv='/tools/harv/theHarvester.py'
@@ -27,13 +22,27 @@ alias tmuxl='tmux list-sessions'
 alias tmuxk='tmux kill-session -t'
 alias tmuxs='tmux switch -t'
 
-# Fix atom flickering screen
-alias atom='atom . --disable-gpu'
+# git shortcuts
+alias gita='git add -A'
+alias gits='git status'
+alias gitd='git diff'
+alias gitl='git log --graph'
+alias gitcom='git commit'
+alias gitc='git checkout'
+alias gitb='git branch'
+
+set REPOS /home/$USER/Documents/gitrepos
 
 function fish_greeting
 end
 
-set REPOS /home/$USER/Documents/gitrepos
+function fish_title
+  set h (hostname)
+  set p (dirs)
+
+  echo "$h ∑ $p"
+end
+
 
 # Colors for the prompt
 set blue "\033[01;34m"
@@ -43,50 +52,6 @@ set white_thin "\033[0;37m"
 set green "\033[01;32m"
 set cyan "\033[01;36m"
 set reset "\033[00m"
-
-## Brackets needed around non-printable characters in PS1
-#set ps1_blue '\['"$blue"'\]'
-#set ps1_red '\['"$red"'\]'
-#set ps1_green '\['"$green"'\]'
-#set ps1_white '\['"$white"'\]'
-#set ps1_cyan '\['"$cyan"'\]'
-#set ps1_reset '\['"$reset"'\]'
-#
-#function parse_git_branch
-#  set -l gitstatus (git status 2> /dev/null)
-#  if [ (echo $gitstatus | grep "Changes to be committed") != "" ]
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1***)/'
-#  else if [ (echo $gitstatus | grep "Changes not staged for commit") != "" ]
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1**)/'
-#  else if [ (echo $gitstatus | grep "Untracked") != "" ]
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1*)/'
-#  else if [ (echo $gitstatus | grep "nothing to commit") != "" ]
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-#  else
-#    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1?)/'
-#  end
-#end
-#
-## Echo a non-printing color character depending on whether or not the current git branch is the master
-## Does NOT print the branch name
-## Use the parse_git_branch() function for that.
-#function parse_git_branch_color
-#  set br (parse_git_branch)
-#  if [ $br = "(master)" ]; or [ $br = "(master*)" ]; or [ $br = "(master**)" ]; or [ $br = "(master***)" ]
-#    echo -e "$blue"
-#  else
-#    echo -e "$green"
-#  end
-#end
-#
-#
-#function fish_prompt
-#  if [ (id -u) != 0 ]
-#    printf "$white%s%s%s$cyan λ $reset" (basename $PWD) (parse_git_branch_color) (parse_git_branch)
-#  else
-#    printf "$redλ $white%s$white#$reset " (basename $PWD) (parse_git_branch_color) (parse_git_branch)
-#  end
-#end
 
 set fish_git_dirty_color red
 set fish_git_not_dirty_color green
@@ -105,10 +70,35 @@ end
 function fish_prompt
   set -l git_dir (git rev-parse --git-dir 2> /dev/null)
   if test -n "$git_dir"
-    printf '%s%s %s %s %sλ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $cyan) (echo -e $reset)
-    #printf '%s λ %s%s%s %s %s> ' (basename $PWD) (set_color $fish_color_cwd) (set_color normal) (set fork (printf '\ue0a0'); echo $fork) (parse_git_branch)
+
+    if [ (id -u) = 0 ]
+      printf '%s%s %s %s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $reset)
+    else
+      printf '%s%s %s %s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $cyan) (echo -e $reset)
+    end
+
   else
-    printf '%s%s %sλ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $cyan) (echo -e $reset)
-    #printf '%s λ %s%s%s' (basename $PWD) (set_color $fish_color_cwd) (set_color normal)
+
+    if [ (id -u) = 0 ]
+      printf '%s%s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $reset)
+    else
+      printf '%s%s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $cyan) (echo -e $reset)
+    end
+
   end
 end
+
+# git commit
+set -x VISUAL "vim"
+
+# tmux
+if status is-interactive
+and not set -q TMUX
+    exec tmux
+end
+
+# nix search location
+set -x NIX_PATH "nixpkgs=/home/eddie/.nix-defexpr/channels/nixpkgs"
+
+# initialize ocaml stuff
+eval (opam config env)
