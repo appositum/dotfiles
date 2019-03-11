@@ -5,204 +5,213 @@
 "
 " author: raichoo (raichoo@googlemail.com)
 
-if version < 600
-  syn clear
-elseif exists("b:current_syntax")
+if exists("b:current_syntax")
   finish
 endif
 
-if get(g:, 'haskell_backpack', 0)
-  syn keyword haskellBackpackStructure unit signature
-  syn keyword haskellBackpackDependency dependency
-endif
+" Values
+syn match haskellIdentifier "\<[_a-z]\(\w\|\'\)*\>"
+syn match haskellNumber "0[xX][0-9a-fA-F]\+\|0[oO][0-7]\|[0-9]\+"
+syn match haskellFloat "[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\="
+syn keyword haskellBoolean true false
 
-syn spell notoplevel
-syn match haskellRecordField contained containedin=haskellBlock
-  \ "[_a-z][a-zA-Z0-9_']*\(,\s*[_a-z][a-zA-Z0-9_']*\)*\_s\+::\_s"
-  \ contains=
-  \ haskellIdentifier,
-  \ haskellOperators,
-  \ haskellSeparator,
-  \ haskellParens
-syn match haskellTypeSig
-  \ "^\s*\(where\s\+\|let\s\+\|default\s\+\)\?[_a-z][a-zA-Z0-9_']*#\?\(,\s*[_a-z][a-zA-Z0-9_']*#\?\)*\_s\+::\_s"
-  \ contains=
-  \ haskellWhere,
-  \ haskellLet,
-  \ haskellDefault,
-  \ haskellIdentifier,
-  \ haskellOperators,
-  \ haskellSeparator,
-  \ haskellParens
-syn keyword haskellWhere where
-syn keyword haskellLet let
-syn match HaskellDerive "\<deriving\>\(\s\+\<\(anyclass\|instance\|newtype\|stock\)\>\)\?"
-syn keyword haskellDeclKeyword module class instance newtype in
-syn match haskellDecl "\<\(type\|data\)\>\s\+\(\<family\>\)\?"
-syn keyword haskellDefault default
-syn keyword haskellImportKeywords import qualified safe as hiding contained
-syn keyword haskellForeignKeywords foreign export import ccall safe unsafe interruptible capi prim contained
-syn region haskellForeignImport start="\<foreign\>" end="\_s\+::\s" keepend
-  \ contains=
-  \ haskellString,
-  \ haskellOperators,
-  \ haskellForeignKeywords,
-  \ haskellIdentifier
-syn match haskellImport "^\s*\<import\>\s\+\(\<safe\>\s\+\)\?\(\<qualified\>\s\+\)\?.\+\(\s\+\<as\>\s\+.\+\)\?\(\s\+\<hiding\>\)\?"
-  \ contains=
-  \ haskellParens,
-  \ haskellOperators,
-  \ haskellImportKeywords,
-  \ haskellType,
-  \ haskellLineComment,
-  \ haskellBlockComment,
-  \ haskellString,
-  \ haskellPragma
-syn keyword haskellKeyword do case of
-if get(g:, 'haskell_enable_static_pointers', 0)
-  syn keyword haskellStatic static
-endif
+" Delimiters
+syn match haskellDelimiter "[,;|.()[\]{}]"
+
+" Type
+syn match haskellType "\%(\<class\s\+\)\@15<!\<\u\w*\>" contained
+  \ containedin=haskellTypeAlias
+  \ nextgroup=haskellType,haskellTypeVar skipwhite
+syn match haskellTypeVar "\<[_a-z]\(\w\|\'\)*\>" contained
+  \ containedin=haskellData,haskellNewtype,haskellTypeAlias,haskellFunctionDecl
+syn region haskellTypeExport matchgroup=haskellType start="\<[A-Z]\(\S\&[^,.]\)*\>("rs=e-1 matchgroup=haskellDelimiter end=")" contained extend
+  \ contains=haskellConstructor,haskellDelimiter
+
+" Constructor
+syn match haskellConstructor "\%(\<class\s\+\)\@15<!\<\u\w*\>"
+syn region haskellConstructorDecl matchgroup=haskellConstructor start="\<[A-Z]\w*\>" end="\(|\|$\)"me=e-1,re=e-1 contained
+  \ containedin=haskellData,haskellNewtype
+  \ contains=haskellType,haskellTypeVar,haskellDelimiter,haskellOperatorType,haskellOperatorTypeSig,@haskellComment
+
+
+" Function
+syn match haskellFunction "\%(\<instance\s\+\|\<class\s\+\)\@18<!\<[_a-z]\(\w\|\'\)*\>" contained
+" syn match haskellFunction "\<[_a-z]\(\w\|\'\)*\>" contained
+syn match haskellFunction "(\%(\<class\s\+\)\@18<!\(\W\&[^(),\"]\)\+)" contained extend
+syn match haskellBacktick "`[_A-Za-z][A-Za-z0-9_\.]*`"
+
+" Class
+syn region haskellClassDecl start="^\%(\s*\)class\>"ms=e-5 end="\<where\>\|$"
+  \ contains=haskellClass,haskellClassName,haskellOperatorType,haskellOperator,haskellType,haskellWhere
+  \ nextgroup=haskellClass
+  \ skipnl
+syn match haskellClass "\<class\>" containedin=haskellClassDecl contained
+  \ nextgroup=haskellClassName
+  \ skipnl
+syn match haskellClassName "\<[A-Z]\w*\>" containedin=haskellClassDecl contained
+
+" Module
+syn match haskellModuleName "\(\u\w\*\.\?\)*" contained excludenl
+syn match haskellModuleKeyword "\<module\>"
+syn match haskellModule "^module\>\s\+\<\(\w\+\.\?\)*\>"
+  \ contains=haskellModuleKeyword,haskellModuleName
+  \ nextgroup=haskellModuleParams
+  \ skipwhite
+  \ skipnl
+  \ skipempty
+syn region haskellModuleParams start="(" skip="([^)]\{-})" end=")" fold contained keepend
+  \ contains=haskellClassDecl,haskellClass,haskellClassName,haskellDelimiter,haskellType,haskellTypeExport,haskellStructure,haskellModuleKeyword,@haskellComment
+  \ nextgroup=haskellImportParams skipwhite
+
+" Import
+syn match haskellImportKeyword "\<\(foreign\|import\|qualified\)\>"
+syn match haskellImport "\<import\>\s\+\(qualified\s\+\)\?\<\(\w\+\.\?\)*"
+  \ contains=haskellImportKeyword,haskellModuleName
+  \ nextgroup=haskellImportParams,haskellImportAs,haskellImportHiding
+  \ skipwhite
+syn region haskellImportParams
+  \ start="("
+  \ skip="([^)]\{-})"
+  \ end=")"
+  \ contained
+  \ contains=haskellClass,haskellClass,haskellStructure,haskellType,haskellIdentifier
+  \ nextgroup=haskellImportAs
+  \ skipwhite
+syn keyword haskellAsKeyword as contained
+syn match haskellImportAs "\<as\>\_s\+\u\w*"
+  \ contains=haskellAsKeyword,haskellModuleName
+  \ nextgroup=haskellModuleName
+syn keyword haskellHidingKeyword hiding contained
+syn match haskellImportHiding "hiding"
+  \ contained
+  \ contains=haskellHidingKeyword
+  \ nextgroup=haskellImportParams
+  \ skipwhite
+
+" Function declaration
+syn region haskellFunctionDecl
+  \ excludenl start="^\z(\s*\)\(\(foreign\s\+import\)\_s\+\)\?[_a-z]\(\w\|\'\)*\_s\{-}\(::\|∷\)"
+  \ end="^\z1\=\S"me=s-1,re=s-1 keepend
+  \ contains=haskellFunctionDeclStart,haskellForall,haskellOperatorType,haskellOperatorTypeSig,haskellType,haskellTypeVar,haskellDelimiter,@haskellComment
+syn region haskellFunctionDecl
+  \ excludenl start="^\z(\s*\)where\z(\s\+\)[_a-z]\(\w\|\'\)*\_s\{-}\(::\|∷\)"
+  \ end="^\(\z1\s\{5}\z2\)\=\S"me=s-1,re=s-1 keepend
+  \ contains=haskellFunctionDeclStart,haskellForall,haskellOperatorType,haskellOperatorTypeSig,haskellType,haskellTypeVar,haskellDelimiter,@haskellComment
+syn region haskellFunctionDecl
+  \ excludenl start="^\z(\s*\)let\z(\s\+\)[_a-z]\(\w\|\'\)*\_s\{-}\(::\|∷\)"
+  \ end="^\(\z1\s\{3}\z2\)\=\S"me=s-1,re=s-1 keepend
+  \ contains=haskellFunctionDeclStart,haskellForall,haskellOperatorType,haskellOperatorTypeSig,haskellType,haskellTypeVar,haskellDelimiter,@haskellComment
+syn match haskellFunctionDeclStart "^\s*\(\(foreign\s\+import\|let\|where\)\_s\+\)\?\([_a-z]\(\w\|\'\)*\)\_s\{-}\(::\|∷\)" contained
+  \ contains=haskellImportKeyword,haskellWhere,haskellLet,haskellFunction,haskellOperatorType
+syn keyword haskellForall forall
+syn match haskellForall "∀"
+
+" Keywords
 syn keyword haskellConditional if then else
-syn match haskellNumber "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>\|\<0[bB][10]\+\>"
-syn match haskellFloat "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
-syn match haskellSeparator  "[,;]"
-syn region haskellParens matchgroup=haskellDelimiter start="(" end=")" contains=TOP,haskellTypeSig,@Spell
-syn region haskellBrackets matchgroup=haskellDelimiter start="\[" end="]" contains=TOP,haskellTypeSig,@Spell
-syn region haskellBlock matchgroup=haskellDelimiter start="{" end="}" contains=TOP,@Spell
-syn keyword haskellInfix infix infixl infixr
-syn keyword haskellBottom undefined error
-syn match haskellOperators "[-!#$%&\*\+/<=>\?@\\^|~:.]\+\|\<_\>"
-syn match haskellQuote "\<'\+" contained
-syn match haskellQuotedType "[A-Z][a-zA-Z0-9_']*\>" contained
-syn region haskellQuoted start="\<'\+" end="\>"
-  \ contains=
-  \ haskellType,
-  \ haskellQuote,
-  \ haskellQuotedType,
-  \ haskellSeparator,
-  \ haskellParens,
-  \ haskellOperators,
-  \ haskellIdentifier
-syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$"
-  \ contains=
-  \ haskellTodo,
-  \ @Spell
-syn match haskellBacktick "`[A-Za-z_][A-Za-z0-9_\.']*#\?`"
-syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+
-  \ contains=@Spell
-syn match haskellIdentifier "[_a-z][a-zA-z0-9_']*" contained
-syn match haskellChar "\<'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'\>"
-syn match haskellType "\<[A-Z][a-zA-Z0-9_']*\>"
-syn region haskellBlockComment start="{-" end="-}"
-  \ contains=
-  \ haskellBlockComment,
-  \ haskellTodo,
-  \ @Spell
-syn region haskellPragma start="{-#" end="#-}"
-syn region haskellLiquid start="{-@" end="@-}"
-syn match haskellPreProc "^#.*$"
-syn keyword haskellTodo TODO FIXME contained
-" Treat a shebang line at the start of the file as a comment
-syn match haskellShebang "\%^#!.*$"
-if !get(g:, 'haskell_disable_TH', 0)
-    syn match haskellQuasiQuoted "." containedin=haskellQuasiQuote contained
-    syn region haskellQuasiQuote matchgroup=haskellTH start="\[[_a-zA-Z][a-zA-z0-9._']*|" end="|\]"
-    syn region haskellTHBlock matchgroup=haskellTH start="\[\(d\|t\|p\)\?|" end="|]" contains=TOP
-    syn region haskellTHDoubleBlock matchgroup=haskellTH start="\[||" end="||]" contains=TOP
-endif
-if get(g:, 'haskell_enable_typeroles', 0)
-  syn keyword haskellTypeRoles phantom representational nominal contained
-  syn region haskellTypeRoleBlock matchgroup=haskellTypeRoles start="type\s\+role" end="$" keepend
-    \ contains=
-    \ haskellType,
-    \ haskellTypeRoles
-endif
-if get(g:, 'haskell_enable_quantification', 0)
-  syn keyword haskellForall forall
-endif
-if get(g:, 'haskell_enable_recursivedo', 0)
-  syn keyword haskellRecursiveDo mdo rec
-endif
-if get(g:, 'haskell_enable_arrowsyntax', 0)
-  syn keyword haskellArrowSyntax proc
-endif
-if get(g:, 'haskell_enable_pattern_synonyms', 0)
-  syn keyword haskellPatternKeyword pattern
-endif
+syn keyword haskellStatement do case of in
+syn keyword haskellLet let
+syn keyword haskellWhere where
+syn match haskellStructure "\<\(data\|newtype\|type\|kind\)\>"
+  \ nextgroup=haskellType skipwhite
+syn keyword haskellStructure derive
+syn keyword haskellStructure instance
+  \ nextgroup=haskellFunction skipwhite
 
-highlight def link haskellBottom Macro
-highlight def link haskellTH Boolean
-highlight def link haskellIdentifier Identifier
-highlight def link haskellForeignKeywords Structure
-highlight def link haskellKeyword Keyword
-highlight def link haskellDefault Keyword
+" Infix
+syn match haskellInfixKeyword "\<\(infix\|infixl\|infixr\)\>"
+syn match haskellInfix "^\(infix\|infixl\|infixr\)\>\s\+\([0-9]\+\)\s\+\(type\s\+\)\?\(\S\+\)\s\+as\>"
+  \ contains=haskellInfixKeyword,haskellNumber,haskellAsKeyword,haskellConstructor,haskellStructure,haskellFunction,haskellBlockComment
+  \ nextgroup=haskellFunction,haskellOperator,@haskellComment
+
+" Operators
+syn match haskellOperator "\([-!#$%&\*\+/<=>\?@\\^|~:]\|\<_\>\)"
+syn match haskellOperatorType "\%(\<instance\>.*\)\@40<!\(::\|∷\)"
+  \ nextgroup=haskellForall,haskellType skipwhite skipnl skipempty
+syn match haskellOperatorFunction "\(->\|<-\|[\\→←]\)"
+syn match haskellOperatorTypeSig "\(->\|<-\|=>\|<=\|::\|[∷∀→←⇒⇐]\)" contained
+  \ nextgroup=haskellType skipwhite skipnl skipempty
+
+" Type definition
+syn region haskellData start="^data\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
+syn match haskellDataStart "^data\s\+\([A-Z]\w*\)" contained
+  \ containedin=haskellData
+  \ contains=haskellStructure,haskellType,haskellTypeVar
+syn match haskellForeignData "\<foreign\s\+import\s\+data\>"
+  \ contains=haskellImportKeyword,haskellStructure
+  \ nextgroup=haskellType skipwhite
+
+syn region haskellNewtype start="^newtype\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
+syn match haskellNewtypeStart "^newtype\s\+\([A-Z]\w*\)" contained
+  \ containedin=haskellNewtype
+  \ contains=haskellStructure,haskellType,haskellTypeVar
+
+syn region haskellTypeAlias start="^type\s\+\([A-Z]\w*\)" end="^\S"me=s-1,re=s-1 transparent
+syn match haskellTypeAliasStart "^type\s\+\([A-Z]\w*\)" contained
+  \ containedin=haskellTypeAlias
+  \ contains=haskellStructure,haskellType,haskellTypeVar
+
+" String
+syn match haskellChar "'[^'\\]'\|'\\.'\|'\\u[0-9a-fA-F]\{4}'"
+syn region haskellString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
+syn region haskellMultilineString start=+"""+ end=+"""+ fold contains=@Spell
+
+" Comment
+syn match haskellLineComment "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=@Spell
+syn region haskellBlockComment start="{-" end="-}" fold
+  \ contains=haskellBlockComment,@Spell
+syn cluster haskellComment contains=haskellLineComment,haskellBlockComment,@Spell
+
+syn sync minlines=50
+
+" highlight links
+highlight def link haskellModule Include
+highlight def link haskellImport Include
+highlight def link haskellModuleKeyword haskellKeyword
+highlight def link haskellImportAs Include
+highlight def link haskellModuleName Include
+highlight def link haskellModuleParams haskellDelimiter
+highlight def link haskellImportKeyword haskellKeyword
+highlight def link haskellAsKeyword haskellKeyword
+highlight def link haskellHidingKeyword haskellKeyword
+
 highlight def link haskellConditional Conditional
+highlight def link haskellWhere haskellKeyword
+highlight def link haskellInfixKeyword haskellKeyword
+
+highlight def link haskellBoolean Boolean
 highlight def link haskellNumber Number
 highlight def link haskellFloat Float
-highlight def link haskellSeparator Delimiter
+
 highlight def link haskellDelimiter Delimiter
-highlight def link haskellInfix Keyword
-highlight def link haskellOperators Operator
-highlight def link haskellQuote Operator
-highlight def link haskellShebang Comment
-highlight def link haskellLineComment Comment
-highlight def link haskellBlockComment Comment
-highlight def link haskellPragma SpecialComment
-highlight def link haskellLiquid SpecialComment
-highlight def link haskellString String
+
+highlight def link haskellOperatorTypeSig haskellOperatorType
+highlight def link haskellOperatorFunction haskellOperatorType
+highlight def link haskellOperatorType haskellOperator
+
+highlight def link haskellConstructorDecl haskellConstructor
+highlight def link haskellConstructor haskellFunction
+
+highlight def link haskellTypeVar Identifier
+highlight def link haskellForall haskellStatement
+
 highlight def link haskellChar String
-highlight def link haskellBacktick Operator
-highlight def link haskellQuasiQuoted String
-highlight def link haskellTodo Todo
-highlight def link haskellPreProc PreProc
-highlight def link haskellAssocType Type
-highlight def link haskellQuotedType Type
+highlight def link haskellBacktick haskellOperator
+highlight def link haskellString String
+highlight def link haskellMultilineString String
+
+highlight def link haskellLineComment haskellComment
+highlight def link haskellBlockComment haskellComment
+
+" haskell general highlights
+highlight def link haskellClass haskellKeyword
+highlight def link haskellClassName Type
+highlight def link haskellStructure haskellKeyword
+highlight def link haskellKeyword Keyword
+highlight def link haskellStatement Statement
+highlight def link haskellLet Statement
+highlight def link haskellOperator Operator
+highlight def link haskellFunction Function
 highlight def link haskellType Type
-highlight def link haskellImportKeywords Include
-if get(g:, 'haskell_classic_highlighting', 0)
-  highlight def link haskellDeclKeyword Keyword
-  highlight def link HaskellDerive Keyword
-  highlight def link haskellDecl Keyword
-  highlight def link haskellWhere Keyword
-  highlight def link haskellLet Keyword
-else
-  highlight def link haskellDeclKeyword Structure
-  highlight def link HaskellDerive Structure
-  highlight def link haskellDecl Structure
-  highlight def link haskellWhere Structure
-  highlight def link haskellLet Structure
-endif
+highlight def link haskellComment Comment
 
-if get(g:, 'haskell_enable_quantification', 0)
-  highlight def link haskellForall Operator
-endif
-if get(g:, 'haskell_enable_recursivedo', 0)
-  highlight def link haskellRecursiveDo Keyword
-endif
-if get(g:, 'haskell_enable_arrowsyntax', 0)
-  highlight def link haskellArrowSyntax Keyword
-endif
-if get(g:, 'haskell_enable_static_pointers', 0)
-  highlight def link haskellStatic Keyword
-endif
-if get(g:, 'haskell_classic_highlighting', 0)
-  if get(g:, 'haskell_enable_pattern_synonyms', 0)
-    highlight def link haskellPatternKeyword Keyword
-  endif
-  if get(g:, 'haskell_enable_typeroles', 0)
-    highlight def link haskellTypeRoles Keyword
-  endif
-else
-  if get(g:, 'haskell_enable_pattern_synonyms', 0)
-    highlight def link haskellPatternKeyword Structure
-  endif
-  if get(g:, 'haskell_enable_typeroles', 0)
-    highlight def link haskellTypeRoles Structure
-  endif
-endif
-
-if get(g:, 'haskell_backpack', 0)
-  highlight def link haskellBackpackStructure Structure
-  highlight def link haskellBackpackDependency Include
-endif
 let b:current_syntax = "haskell"

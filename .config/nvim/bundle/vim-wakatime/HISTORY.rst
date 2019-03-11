@@ -3,6 +3,40 @@ History
 -------
 
 
+7.1.3 (2018-12-19)
+++++++++++++++++++
+- Upgrade wakatime-cli to v10.6.1.
+- Correctly parse include_only_with_project_file when set to false.
+  `wakatime#161 <https://github.com/wakatime/wakatime/issues/161>`_
+- Support language argument for non-file entity types.
+- Send 25 heartbeats per API request.
+- New category "Writing Tests".
+  `wakatime#156 <https://github.com/wakatime/wakatime/issues/156>`_
+- Fix bug caused by git config section without any submodule option defined.
+  `wakatime#152 <https://github.com/wakatime/wakatime/issues/152>`_
+
+
+7.1.2 (2018-09-20)
+++++++++++++++++++
+
+- Upgrade wakatime-cli to v10.2.4.
+- Default --sync-offline-activity to 100 instead of 5, so offline coding is
+  synced to dashboard faster.
+- Batch heartbeats in groups of 10 per api request.
+- New config hide_project_name and argument --hide-project-names for
+  obfuscating project names when sending coding activity to api.
+- Fix mispelled Gosu language.
+  `wakatime#137 <https://github.com/wakatime/wakatime/issues/137>`_
+- Remove metadata when hiding project or file names.
+- New --local-file argument to be used when --entity is a remote file.
+- New argument --sync-offline-activity for configuring the maximum offline
+  heartbeats to sync to the WakaTime API.
+- Support for project detection from git worktree folders.
+- Force forward slash for file paths.
+- New --category argument.
+- New --exclude-unknown-project argument and corresponding config setting.
+
+
 7.1.1 (2018-04-04)
 ++++++++++++++++++
 
@@ -29,10 +63,10 @@ History
 - Upgrade wakatime-cli to v10.1.2.
 - Detect dependencies from Swift, Objective-C, TypeScript and JavaScript files.
 - Categorize .mjs files as JavaScript.
-  `#wakatime121 <https://github.com/wakatime/wakatime/issues/121>`_
+  `wakatime#121 <https://github.com/wakatime/wakatime/issues/121>`_
 - Detect dependencies from Elm, Haskell, Haxe, Kotlin, Rust, and Scala files.
 - Improved Matlab vs Objective-C language detection.
-  `#wakatime129 <https://github.com/wakatime/wakatime/issues/129>`_
+  `wakatime#129 <https://github.com/wakatime/wakatime/issues/129>`_
 
 
 7.0.5 (2018-01-28)

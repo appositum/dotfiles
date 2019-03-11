@@ -32,6 +32,7 @@ endif
 if !exists('g:discord_fts_whitelist')
   let g:discord_fts_whitelist = [
         \'asm',
+        \'agda',
         \'c',
         \'chef',
         \'coffee',

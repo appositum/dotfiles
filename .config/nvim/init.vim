@@ -1,15 +1,19 @@
 set nocompatible
 filetype off
-"set rtp+=~/.config/nvim/bundle/Vundle.vim
-"call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'wakatime/vim-wakatime'
-"call vundle#end()
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'wakatime/vim-wakatime'
+Plugin 'drewtempelmeyer/palenight.vim'
+"Plugin 'edkolev/tmuxline.vim'
+"Plugin 'joshdick/onedark.vim'
+call vundle#end()
 filetype plugin indent on
 set encoding=utf-8
 
 syntax on
-colorscheme nord
+set t_Co=256
+set termguicolors
 set number
 set clipboard=unnamed
 set expandtab
@@ -18,12 +22,13 @@ set softtabstop=0
 set shiftwidth=2
 set laststatus=2
 set showtabline=1
-set t_Co=256
-set cursorline
 set hlsearch
+set cursorline
 set autoindent
 set visualbell
 set ignorecase
+colorscheme palenight
+set background=dark
 
 execute pathogen#infect()
 call pathogen#helptags()
@@ -57,8 +62,10 @@ if &term == 'screen-256color' || &term == 'xterm-256color'
     let &t_EI = "\<Esc>[1 q"
 endif
 
-hi MatchParen guibg=NONE guifg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
-hi Search guibg=NONE guifg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
+"hi Normal ctermbg=None ctermfg=None
+"hi Notext ctermbg=None ctermfg=None
+"hi MatchParen guibg=NONE guifg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
+"hi Search guibg=NONE guifg=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
 
 let mapleader=","
 set timeout timeoutlen=1500
@@ -90,19 +97,49 @@ let g:haskell_indent_after_bare_where = 2
 let g:haskell_indent_do = 2
 let g:haskell_indent_in = 0
 let g:haskell_indent_guard = 2
+let g:haskell_indent_if = 2
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 " nord configs
-let g:nord_italic = 1
-let g:nord_comment_brightness = 20
-let g:nord_underline = 1
-let g:nord_uniform_status_lines = 1
-let g:nord_italic_comments = 1
+"let g:nord_italic = 1
+"let g:nord_comment_brightness = 20
+"let g:nord_underline = 1
+"let g:nord_uniform_status_lines = 1
+"let g:nord_italic_comments = 1
 
-" nord lightline
+" palenight
+let g:palenight_terminal_italics=1
+
+" lightline
+"let g:lightline = { 'colorscheme': 'palenight' }
+"
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'palenight',
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
       \ }
+
+
+" tabs
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnew<Space>
+nnoremap tm  :tabm<Space>
+nnoremap tc  :tabclose<CR>
+
+"ignore fucking agda
+silent! py3 pass
+
+set modifiable
+tnoremap <Esc> <C-\><C-n>

@@ -6,7 +6,7 @@
 " Website:     https://wakatime.com/
 " ============================================================================
 
-let s:VERSION = '7.1.1'
+let s:VERSION = '7.1.3'
 
 
 " Init {{{
@@ -53,7 +53,7 @@ let s:VERSION = '7.1.1'
     let s:local_cache_expire = 10  " seconds between reading s:data_file
     let s:last_heartbeat = {'last_activity_at': 0, 'last_heartbeat_at': 0, 'file': ''}
     let s:heartbeats_buffer = []
-    let s:send_buffer_seconds = 10  " seconds between sending buffered heartbeats
+    let s:send_buffer_seconds = 30  " seconds between sending buffered heartbeats
     let s:last_sent = localtime()
     let s:has_async = has('patch-7.4-2344') && exists('*job_start')
     let s:nvim_async = exists('*jobstart')
@@ -285,7 +285,7 @@ let s:VERSION = '7.1.1'
             let paths = ['python3']
             if s:IsWindows()
                 let pyver = 39
-                while pyver >= 26
+                while pyver >= 27
                     let paths = paths + [printf('/Python%d/pythonw', pyver), printf('/python%d/pythonw', pyver), printf('/Python%d/python', pyver), printf('/python%d/python', pyver)]
                     let pyver = pyver - 1
                 endwhile
