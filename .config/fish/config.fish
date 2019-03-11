@@ -45,11 +45,13 @@ end
 
 
 # Colors for the prompt
-set blue "\033[01;34m"
-set red "\033[01;31m"
+set red "\033[0;31m"
+set yellow "\033[0;33m"
+set blue "\033[0;34m"
+set purple "\033[0;35m"
 set white "\033[01;37m"
 set white_thin "\033[0;37m"
-set green "\033[01;32m"
+set green "\033[0;32m"
 set cyan "\033[01;36m"
 set reset "\033[00m"
 
@@ -72,17 +74,17 @@ function fish_prompt
   if test -n "$git_dir"
 
     if [ (id -u) = 0 ]
-      printf '%s%s %s %s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $reset)
+      printf '%s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf '%s%s %s %s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $cyan) (echo -e $reset)
+      printf '%s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   else
 
     if [ (id -u) = 0 ]
-      printf '%s%s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $reset)
+      printf '%s%s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf '%s%s %s∑ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $cyan) (echo -e $reset)
+      printf '%s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   end
@@ -100,5 +102,12 @@ end
 # nix search location
 set -x NIX_PATH "nixpkgs=/home/eddie/.nix-defexpr/channels/nixpkgs"
 
-# initialize ocaml stuff
-eval (opam config env)
+# set nix to path
+if test -d $HOME/.nix-profile; and test -d /nix
+   source ~/.config/fish/conf.d/nix.fish
+end
+
+eval (opam env)
+
+# yarn stuff to path
+set -gx PATH /home/eddie/.npm-packages/bin $PATH
