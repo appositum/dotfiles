@@ -198,3 +198,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH=/home/eddie/.local/bin/luna-studio:$PATH
+
+# added by travis gem
+[ -f /home/eddie/.travis/travis.sh ] && source /home/eddie/.travis/travis.sh

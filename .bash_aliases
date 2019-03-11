@@ -1,7 +1,7 @@
 # Package management
-alias inst='sudo pacman -S'
-alias remove='sudo pacman -R'
-alias update='sudo pacman -Syu'
+alias inst='sudo apt install'
+alias remove='sudo apt remove'
+alias update='sudo apt update && sudo apt upgrade'
 
 alias insty='yaourt -S'
 alias removy='yaourt -R'
