@@ -27,13 +27,17 @@ alias gitb='git branch'
 set REPOS /home/$USER/Documents/gitrepos
 
 function fish_greeting
+  set last (last -R -F -1 $USER | head -1)
+  set login_time (echo $last | awk '{print $3,$4,$5,$6,$7}')
+  set quote (fortune)
+  echo -e "Last login: $login_time\n\n$quote" | cowsay | lolcat
 end
 
 function fish_title
   set h (hostname)
   set p (dirs)
 
-  echo "$h ∑ $p"
+  echo "$h ❯ $p"
 end
 
 
