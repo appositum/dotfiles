@@ -68,8 +68,8 @@ end
 
 function fish_prompt
   set -l git_dir (git rev-parse --git-dir 2> /dev/null)
-  if test -n "$git_dir"
 
+  if test -n "$git_dir"
     if [ (id -u) = 0 ]
       printf '%s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
@@ -77,7 +77,6 @@ function fish_prompt
     end
 
   else
-
     if [ (id -u) = 0 ]
       printf '%s%s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
@@ -102,4 +101,7 @@ end
 eval (opam env)
 
 # yarn stuff to path
-set -gx PATH /home/eddie/.npm-packages/bin $PATH
+set -gx PATH /home/eddie/.yarn/bin $PATH
+
+set -x XKB_DEFAULT_LAYOUT br
+set -x XKB_DEFAULT_OPTIONS compose:ralt,ctrl:nocaps
