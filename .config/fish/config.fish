@@ -97,12 +97,7 @@ and not set -q TMUX
 end
 
 # nix search location
-set -x NIX_PATH "nixpkgs=/home/eddie/.nix-defexpr/channels/nixpkgs"
-
-# set nix to path
-if test -d $HOME/.nix-profile; and test -d /nix
-   source ~/.config/fish/conf.d/nix.fish
-end
+# set -x NIX_PATH "nixpkgs=/home/eddie/.nix-defexpr/channels/nixpkgs"
 
 eval (opam env)
 
