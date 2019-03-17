@@ -264,5 +264,5 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 exec_always twmnd
 
 # Screenshot with grim + slurp
-bindsym --release $mod+Print exec $HOME/.config/sway/scripts/screenshot.sh
-bindsym Print exec $HOME/.config/sway/scripts/screenshot_full.sh
+bindsym --release $mod+Shift+Print exec $HOME/.config/sway/scripts/screenshot.sh
+bindsym --release $mod+Print exec $HOME/.config/sway/scripts/screenshot_full.sh
