@@ -229,15 +229,15 @@ bar {
 #exec_always $HOME/.config/i3/scripts/locker/lock_screen
 
 # Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_utils/increase
-#
-#bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/i3/scripts/volume_utils/decrease
-#
-#bindsym XF86AudioMute exec --no-startup-id $HOME/.config/i3/scripts/volume_utils/mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/increase
+
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/decrease
+
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/mute
 
 # Sreen brightness controls
-#bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -246,7 +246,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Background
-output HDMI2 mode 1920x1080 pos 1920,0 bg ~/.palenight.jpg stretch
+output eDP-1 mode 1920x1080 pos 1920,0 bg ~/.palenight.jpg stretch
 
 # xinput touchpad (replace with your device name)
 #exec_always xinput set-prop "DELL0781:00 06CB:7E7E Touchpad" "libinput Tapping Enabled" 1
