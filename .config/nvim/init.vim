@@ -41,6 +41,7 @@ set showtabline=1
 set hlsearch
 set cursorline
 set autoindent
+set smartindent
 set visualbell
 colorscheme palenight
 set background=dark
@@ -167,7 +168,7 @@ let g:netrw_browse_split = 4
 let g:netrw_winsize = 12
 let g:netrw_altv = 1
 
-" Toggle Vexplore with Ctrl-E
+" Toggle Vexplore with Ctrl-B
 function! ToggleVExplorer()
   if exists("t:expl_buf_num")
       let expl_win_num = bufwinnr(t:expl_buf_num)
@@ -190,9 +191,16 @@ endfunction
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vex | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'Vex' argv()[0] | wincmd p | ene | endif
 
-map <silent> <C-n> :call ToggleVExplorer()<CR>
+map <silent> <C-b> :call ToggleVExplorer()<CR>
 
 " ocaml merlin
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 let g:syntastic_ocaml_checkers = ['merlin']
+
+" buffers
+map <C-n> <Esc>:buffers<CR>
+map <C-j> <Esc>:bprev<CR>
+map <C-k> <Esc>:bnext<CR>
+map <C-h> <Esc>:bfirst<CR>
+map <C-l> <Esc>:blast<CR>
