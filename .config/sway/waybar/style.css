@@ -47,8 +47,8 @@ window#waybar {
 #battery {
     /*
     background-color: #ffffff;
-    */
     color: black;
+    */
 }
 
 #battery.charging {
@@ -101,12 +101,14 @@ window#waybar {
 }
 
 #pulseaudio {
-    background: #f1c40f;
+    /*background: #f1c40f;*/
+    background: #c3e88d;
     color: black;
 }
 
 #pulseaudio.muted {
-    background: #90b1b1;
+    /*background: #90b1b1;*/
+    background: #ff5370;
     color: #2a5c45;
 }
 
@@ -116,9 +118,11 @@ window#waybar {
 }
 
 #tray {
-    background-color: #2980b9;
+    /*background-color: #2980b9;*/
+    background-color: #c792ea;
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    /*background-color: #2d3436;*/
+    background-color: #676e95;
 }
