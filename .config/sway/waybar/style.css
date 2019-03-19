@@ -26,6 +26,9 @@ window#waybar {
     /*background: #64727D;
     border-bottom: 3px solid white;*/
     color: #c792ea;
+    /*background: rgba(199, 146, 234, 0.25); palenight fg */
+    background: rgba(103, 110, 149, 0.5); /* palenight comments */
+    border-bottom: 3px solid #c792ea;
 }
 
 #mode {
