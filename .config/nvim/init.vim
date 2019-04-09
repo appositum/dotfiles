@@ -17,11 +17,8 @@ Plugin 'Nymphium/vim-koka'
 Plugin 'spwhitt/vim-nix'
 Plugin 'reasonml-editor/vim-reason-plus'
 Plugin 'wlangstroth/vim-racket'
-Plugin 'Shougo/denite.nvim'
-Plugin 'Shougo/defx.nvim'
-Plugin 'Shougo/deol.nvim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sensible'
+Plugin 'rgrinberg/vim-ocaml'
 call vundle#end()
 
 filetype plugin indent on
@@ -165,7 +162,7 @@ tnoremap <Esc> <C-\><C-n>
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
-let g:netrw_winsize = 12
+let g:netrw_winsize = 25
 let g:netrw_altv = 1
 
 " Toggle Vexplore with Ctrl-B
@@ -189,7 +186,7 @@ function! ToggleVExplorer()
 endfunction
 
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | Vex | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'Vex' argv()[0] | wincmd p | ene | endif
+"autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'Vex' argv()[0] | wincmd p | ene | endif
 
 map <silent> <C-b> :call ToggleVExplorer()<CR>
 
@@ -204,3 +201,6 @@ map <C-j> <Esc>:bprev<CR>
 map <C-k> <Esc>:bnext<CR>
 map <C-h> <Esc>:bfirst<CR>
 map <C-l> <Esc>:blast<CR>
+
+highlight CursorLine guibg=#474d69
+highlight CursorLineNr guifg=#c792ea guibg=#474d69
