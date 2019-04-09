@@ -202,5 +202,4 @@ map <C-k> <Esc>:bnext<CR>
 map <C-h> <Esc>:bfirst<CR>
 map <C-l> <Esc>:blast<CR>
 
-highlight CursorLine guibg=#474d69
 highlight CursorLineNr guifg=#c792ea guibg=#474d69
