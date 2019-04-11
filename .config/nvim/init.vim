@@ -34,12 +34,13 @@ set tabstop=2
 set softtabstop=0
 set shiftwidth=2
 set laststatus=2
-set showtabline=1
+set showtabline=2
 set hlsearch
 set cursorline
 set autoindent
 set smartindent
 set visualbell
+set noshowmode
 colorscheme palenight
 set background=dark
 
@@ -142,6 +143,29 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+
+let g:lightline.enable = {
+        \ 'statusline': 1,
+        \ 'tabline': 1
+        \ }
+let g:lightline.tabline = {
+        \  'left':  [ [ 'tabs' ] ],
+        \  'right': [ [ 'buffers'] ]
+        \ }
+let g:lightline.tab = {
+        \ 'active':   [ 'tabnum', 'filename', 'modified' ],
+        \ 'inactive': [ 'tabnum', 'filename', 'modified' ]
+        \ }
+let g:lightline.separator = { 'left': '', 'right': '' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+let g:lightline.component_function = {
+  \ 'buffers': 'g:lightline.my.buffers',
+  \ }
+
+let g:lightline.my = {}
+function g:lightline.my.buffers()
+  return 'buffers'
+endfunction
 
 
 " tabs
