@@ -3,6 +3,7 @@
 use utf8;
 use strict;
 use warnings;
+use open qw( :std :encoding(UTF-8) );
 
 my $muted;
 my $volume;
