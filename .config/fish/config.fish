@@ -96,11 +96,11 @@ set -x VISUAL "vim"
 # tmux
 if status is-interactive
 and not set -q TMUX
-    exec tmux
+    exec tmux -u
 end
 
 # nix search location
-# set -x NIX_PATH "nixpkgs=/home/eddie/.nix-defexpr/channels/nixpkgs"
+set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
 
 eval (opam env)
 
