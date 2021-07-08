@@ -28,6 +28,7 @@ alias gitc='git checkout'
 alias gitb='git branch'
 
 set REPOS /home/$USER/Documents/gitrepos
+set -x LC_ALL "C"
 
 function fish_greeting
   set last (last -R -F -1 $USER | head -1)
