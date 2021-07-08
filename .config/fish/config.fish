@@ -1,6 +1,9 @@
-# Package management
-alias inst='yay -S'
-alias remove='yay -R'
+# Package/system management
+alias inst='sudo apt install'
+alias remove='sudo apt remove'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias reboot='sudo systemctl reboot'
 
 # tar management
 alias tarxz='tar xvf'
