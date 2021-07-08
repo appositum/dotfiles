@@ -11,7 +11,7 @@ alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
 # Tools
-alias geotrack='curl ipinfo.io/$IP'
+alias geotrack='curl -L ipinfo.io/IP'
 
 # Tmux shortcuts
 alias tmuxl='tmux list-sessions'
@@ -74,9 +74,9 @@ function fish_prompt
 
   if test -n "$git_dir"
     if [ (id -u) = 0 ]
-      printf '%s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf '%s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf ''); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf '%s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf '%s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf ''); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   else
