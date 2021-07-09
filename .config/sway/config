@@ -71,6 +71,7 @@ bindsym $mod+Tab+l exec swaylock -i ~/.bg_blur.jpg
 input "1739:32382:DELL0781:00_06CB:7E7E_Touchpad" {
     tap enabled
     natural_scroll enabled
+    drag enabled
 }
 
 input "1:1:AT_Translated_Set_2_keyboard" {
@@ -102,6 +103,7 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
 #
 # Moving around:
 #
@@ -283,4 +285,4 @@ bindsym XF86AudioPrev exec playerctl previous
 
 font pango:sfns display 12
 
-default_border pixel 2
+default_border pixel 4
