@@ -106,7 +106,17 @@ set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
 eval (opam env)
 
 # yarn stuff to path
-set -gx PATH /home/eddie/.yarn/bin $PATH
+#set -gx PATH /home/eddie/.yarn/bin $PATH
 
 set -x XKB_DEFAULT_LAYOUT br
 set -x XKB_DEFAULT_OPTIONS compose:ralt,ctrl:nocaps
+
+# waybar tray
+set -x XDG_CURRENT_DESKTOP Unity
+
+alias discord='flatpak run com.discordapp.Discord'
+
+# sway startup
+if test (tty) = "/dev/tty1"
+  sway
+end
