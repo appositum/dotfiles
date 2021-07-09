@@ -13,7 +13,6 @@
   "modules-right": [
     "tray",
     "idle_inhibitor",
-    "custom/wttr",
     "disk",
     "memory",
     "cpu",
@@ -72,11 +71,6 @@
     "tooltip": true,
     "tooltip-format": "{used} / {total}"
   },
-  "custom/wttr": {
-    "exec": "curl wttr.in/Aracaju,Brazil?format=\"%c+%t\"",
-    "interval": 1800,
-    "tooltip": false
-  },
   "idle_inhibitor": {
     "format": "{icon}",
     "tooltip": false,
@@ -111,7 +105,7 @@
   },
   "cpu": {
     "tooltip": false,
-    "format": "{usage:3}%"
+    "format": " {usage:2}%"
   },
   "network": {
     "format": "{icon}  {ifname}",
