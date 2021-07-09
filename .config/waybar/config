@@ -38,15 +38,15 @@
     },
     "disable-scroll": true,
     "all-outputs": true,
-    "format": "{name} {icon}",
+    "format": "{icon}",
     "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "urgent": "",
-        "focused": "",
-        "default": ""
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
     }
   },
   "tray": {
@@ -54,7 +54,7 @@
     "spacing": 22
   },
   "custom/clock": {
-    "format": " {}",
+    "format": "{}",
     "exec": "date +'%a %H:%M'",
     "tooltip": false,
     "interval": 60,
