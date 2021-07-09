@@ -105,12 +105,20 @@ set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
 source /home/appositum/.nix-profile/etc/profile.d/nix.fish;
 
 eval (opam env)
+set -x PATH "$HOME/.cargo/bin:$PATH"
 
 # yarn stuff to path
 #set -gx PATH /home/eddie/.yarn/bin $PATH
 
 set -x XKB_DEFAULT_LAYOUT br
 set -x XKB_DEFAULT_OPTIONS compose:ralt,ctrl:nocaps
+
+# ssh agent
+if test -z (pgrep ssh-agent | string collect)
+    eval (ssh-agent -c)
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+end
 
 # waybar tray
 set -x XDG_CURRENT_DESKTOP Unity
