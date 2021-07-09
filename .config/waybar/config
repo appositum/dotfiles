@@ -58,7 +58,7 @@
     "format": " {}",
     "exec": "date +'%a %H:%M'",
     "tooltip": false,
-    "interval": 1,
+    "interval": 60,
   },
   "custom/system": {
     "format": "",
