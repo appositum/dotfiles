@@ -26,6 +26,7 @@ alias gitl='git log --graph'
 alias gitcom='git commit'
 alias gitc='git checkout'
 alias gitb='git branch'
+alias gitclone='/tools/git_clone.py'
 
 set REPOS /home/$USER/Documents/gitrepos
 set -x LC_ALL "C"
