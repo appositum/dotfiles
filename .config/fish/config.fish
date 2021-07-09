@@ -100,8 +100,9 @@ and not set -q TMUX
     exec tmux -u
 end
 
-# nix search location
+# nix search location + source file
 set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
+source /home/appositum/.nix-profile/etc/profile.d/nix.fish;
 
 eval (opam env)
 
