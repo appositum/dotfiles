@@ -1,5 +1,5 @@
 {
-  "name": "ayu-mirage", /* Options: ayu, ayu-mirage, ayu-dark */
+  "name": "palenight",
   "layer": "top",
   "position": "top",
   "height": 30,
@@ -41,24 +41,24 @@
     "all-outputs": true,
     "format": "{name} {icon}",
     "format-icons": {
-        "1": "",
+        "1": "",
         "2": "",
-        "3": "",
+        "3": "",
         "4": "",
-        "5": "",
         "urgent": "",
         "focused": "",
         "default": ""
     }
   },
   "tray": {
-    "icon-size": 14,
+    "icon-size": 16,
     "spacing": 22
   },
   "custom/clock": {
     "format": " {}",
-    "exec": "date +'%a %d %b %H:%M'",
-    "interval": 5
+    "exec": "date +'%a %H:%M'",
+    "tooltip": false,
+    "interval": 1,
   },
   "custom/system": {
     "format": "",
@@ -67,7 +67,7 @@
   },
   "disk": {
     "interval": 30,
-    "format": "  {percentage_used}%",
+    "format": " {percentage_used:2}%",
     "path": "/",
     "tooltip": true,
     "tooltip-format": "{used} / {total}"
@@ -87,9 +87,10 @@
   },
   "pulseaudio": {
     //"scroll-step": 1,
-    "format": "{volume}% ♪",
-    "format-bluetooth": "{volume}% ♪",
-    "format-muted": "",
+    "max-length": 10,
+    "format": "{volume:3}% {icon}",
+    "format-bluetooth": "{volume:3}% ",
+    "format-muted": "{volume:3}% ",
     "format-icons": {
         "headphones": "",
         "handsfree": "",
@@ -110,7 +111,7 @@
   },
   "cpu": {
     "tooltip": false,
-    "format": "  {}%"
+    "format": "{usage:3}%"
   },
   "network": {
     "format": "{icon}  {ifname}",
@@ -127,13 +128,13 @@
   },
   "memory": {
     "interval": 30,
-    "format": " {avail:0.1f}GB",
+    "format": " {avail:0.0f}GB",
     "tooltip": true,
     "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB"
   },
   "backlight": {
       // "device": "acpi_video1",
-      "format": "{percent}% {icon}",
+      "format": "{percent:3}% {icon}",
       "format-icons": ["", ""]
   },
   "custom/spotify": {
