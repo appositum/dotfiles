@@ -60,12 +60,53 @@
   color: white;
 }
 
+#cpu {
+  border-radius: 15px 0px 0px 15px;
+  padding-right: 5px;
+  margin: 3px 0px 3px 3px;
+}
+
+#temperature {
+  border-radius: 0px 15px 15px 0px;
+  padding-left: 5px;
+  margin: 3px 3px 3px 0px;
+}
+
+#cpu, #temperature {
+  background-color: #F07178;
+}
+
+#disk {
+  border-radius: 15px 0px 0px 15px;
+  padding-right: 5px;
+  margin: 3px 0px 3px 3px;
+}
+
+#memory {
+  border-radius: 0px 15px 15px 0px;
+  padding-left: 5px;
+  margin: 3px 3px 3px 0px;
+}
+
+#disk, #memory {
+  background-color: #434758;
+}
+
 #pulseaudio {
+  margin: 3px 0px 3px 3px;
   padding: 0px 10px 0px 5px;
+  border-radius: 15px 0px 0px 15px;
 }
 
 #backlight {
+  margin: 3px 3px 3px 0px;
   padding: 0px 5px 0px 5px;
+  border-radius: 0px 15px 15px 0px;
+}
+
+#pulseaudio, #backlight {
+  color: #292d3e;
+  background-color: #d0d0d0;
 }
 
 #idle_inhibitor {
@@ -85,7 +126,9 @@
 }
 
 #custom-clock {
-  background: #c792ea;
+  background: #292D3E; /*#c792ea;*/
   padding: 0px 5px 0px 10px;
-  color: #292D3E;
+  color: white;
+  border-radius: 15px;
+  margin: 3px;
 }
