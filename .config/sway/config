@@ -49,7 +49,6 @@ exec swayidle -w \
          before-sleep 'swaylock -i ~/.bg_blur.jpg -f -c 000000'
 
 bindsym $mod+Tab+l exec swaylock -i ~/.bg_blur.jpg
-
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -131,15 +130,6 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-
-set $workspace1 "1  "
-set $workspace2 "2  "
-set $workspace3 "3  "
-set $workspace4 "4  "
-set $workspace5 "5  "
 
     # Switch to workspace
     bindsym $mod+1 workspace number 1
@@ -208,9 +198,6 @@ hide_edge_borders smart
 gaps inner 10
 gaps outer 5
 smart_gaps on
-
-# No borders for all windows
-for_window [class="^.*"] border pixel 4
 
 #
 # Resizing containers:
@@ -295,3 +282,5 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 font pango:sfns display 12
+
+default_border pixel 2

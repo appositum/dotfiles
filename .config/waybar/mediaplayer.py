@@ -29,9 +29,9 @@ def on_metadata(player, metadata, manager):
         return
 
     if player.props.status == 'Playing':
-        sys.stdout.write(track_info + '\n')
-    else:
         sys.stdout.write(' ' + track_info + '\n')
+    else:
+        sys.stdout.write(' ' + track_info + '\n')
     sys.stdout.flush()
 
 

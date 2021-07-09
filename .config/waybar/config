@@ -100,7 +100,7 @@
         "car": "",
         "default": ["", ""]
     },
-    "on-click": "pavucontrol"
+    "on-click": "$HOME/.config/sway/scripts/volume_utils/mute"
   },
   "temperature": {
     "thermal-zone": 2,
@@ -116,7 +116,7 @@
   "network": {
     "format": "{icon}  {ifname}",
     "format-wifi": "{icon} {signalStrength}%",
-    "format-ethernet": "{icon}  {ifname}",
+    "format-ethernet": "{icon} {ifname}",
     "format-disconnected": "Offline",
     "format-icons": {
       "wifi": [""],
@@ -140,6 +140,7 @@
   "custom/spotify": {
       "format": " {}",
       "max-length": 40,
-      "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+      "exec": "$HOME/.config/waybar/mediaplayer.py",
+      "on-click": "$HOME/.config/waybar/mediaplayer_on_click"
   }
 }
