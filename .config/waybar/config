@@ -51,7 +51,7 @@
     }
   },
   "tray": {
-    "icon-size": 16,
+    "icon-size": 14,
     "spacing": 22
   },
   "custom/clock": {
