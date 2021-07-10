@@ -1,0 +1,53 @@
+/* custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $color0 transparent;
+}
+
+/* home page customization */
+@-moz-document url('about:home'), url('about:newtab') {
+  /* changes bg color */
+  body {
+    background-color: $color0 !important;
+    background-image: none !important;
+  }
+
+  /* hides the firefox logo and the settings button*/
+  .logo-and-wordmark {
+    opacity: 0 !important;
+  }
+
+  .prefs-button { 
+    display: none !important;
+  }
+
+  /* customizes search bar */
+  #newtab-search-text {
+    --newtab-search-icon: none !important;
+    text-align: center !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border-bottom: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+    width: 10px;
+  }
+
+  .search-inner-wrapper {
+    min-width: 216px !important;
+    width:50% !important;
+  }
+
+  #newtab-search-text:focus {
+    border: 1px solid transparent !important;
+    border-bottom: 1px solid #ffffff !important;
+  }
+
+  #newtab-search-logo {
+    display: none !important;
+  }
+
+  #searchSubmit {
+    display: none !important;
+  }
+}
