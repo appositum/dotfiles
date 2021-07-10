@@ -1,0 +1,9 @@
+font='mononoki'
+text-color=#d0d0d0
+border-color=#3E4452
+background-color=#292D3Ef0
+width=400
+default-timeout=8000
+progress-color=#c792ea over
+padding=10
+border-radius=12

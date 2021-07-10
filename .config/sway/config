@@ -285,4 +285,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 font pango:sfns display 12
 
+# notifier
+exec mako
+
 default_border pixel 4
