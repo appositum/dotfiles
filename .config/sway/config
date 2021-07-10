@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -44,8 +44,8 @@ output eDP-1 mode 1920x1080 pos 1920,0 bg ~/.bg.jpg stretch
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 300 'swaylock -i ~/.bg_blur.jpg -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 300 $HOME/.config/sway/scripts/locker.sh \
+         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -i ~/.bg_blur.jpg -f -c 000000'
 
 bindsym $mod+Tab+l exec swaylock -i ~/.bg_blur.jpg
