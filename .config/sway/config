@@ -30,7 +30,11 @@ floating_modifier $mod
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output eDP-1 mode 1920x1080 pos 1920,0 bg ~/.bg.jpg stretch
+# output eDP-1 mode 1920x1080 pos 1920,0 bg ~/.bg.jpg stretch
+#
+
+# gif background
+exec_always oguri
 
 #
 # Example configuration:
