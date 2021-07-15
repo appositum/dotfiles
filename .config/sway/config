@@ -45,10 +45,10 @@ output eDP-1 mode 1920x1080 pos 1920,0 bg ~/.bg.jpg stretch
 #
 exec swayidle -w \
          timeout 300 $HOME/.config/sway/scripts/locker.sh \
-         timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -i ~/.bg_blur.jpg -f -c 000000'
 
-bindsym $mod+Tab+l exec swaylock -i ~/.bg_blur.jpg
+bindsym $mod+Tab+l exec $HOME/.config/sway/scripts/locker.sh
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -288,4 +288,4 @@ font pango:sfns display 12
 # notifier
 exec mako
 
-default_border pixel 4
+default_border pixel 2
