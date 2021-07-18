@@ -13,6 +13,7 @@
   "modules-right": [
     "tray",
     "idle_inhibitor",
+    "custom/wttr",
     "disk",
     "memory",
     "cpu",
@@ -136,5 +137,10 @@
       "max-length": 40,
       "exec": "$HOME/.config/waybar/mediaplayer.py",
       "on-click": "$HOME/.config/waybar/mediaplayer_on_click"
+  },
+  "custom/wttr": {
+      "format": "{}",
+      "exec": "curl www.wttr.in/Aracaju,Brazil?format=\"%c%t\"",
+      "tooltip": false
   }
 }
