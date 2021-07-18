@@ -127,9 +127,9 @@ end
 # waybar tray
 set -x XDG_CURRENT_DESKTOP Unity
 
-alias discord='flatpak run com.discordapp.Discord'
-
 # sway startup
 if test (tty) = "/dev/pts/0"
   sway
 end
+
+export PATH="$HOME/.cabal/bin:/home/appositum/.ghcup/bin:$PATH"
