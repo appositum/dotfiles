@@ -11,7 +11,11 @@ alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
 # Tools
+alias copy='xclip -selection clipboard'
 alias geotrack='curl -L ipinfo.io/IP'
+if test -e /usr/bin/batcat
+  alias cat='batcat'
+end
 
 # Tmux shortcuts
 alias tmuxl='tmux list-sessions'

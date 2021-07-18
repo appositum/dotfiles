@@ -4,8 +4,8 @@ import argparse
 import os
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--platform", help="Code hosting platform")
-parser.add_argument("-r", "--repository", help="username/repository_name")
+parser.add_argument("platform", help="Code hosting platform")
+parser.add_argument("repository", help="username/repository_name")
 args = parser.parse_args()
 
 class Platform:
@@ -30,4 +30,4 @@ platforms = {
 if args.platform not in platforms.keys():
     raise RuntimeError("Invalid platform")
 
-os.system(f"git clone https://{platforms.get(args.platform).url}/{args.repository}")
+os.system(f"git clone git@{platforms.get(args.platform).url}:{args.repository}")
