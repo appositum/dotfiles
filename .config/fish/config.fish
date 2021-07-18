@@ -130,6 +130,6 @@ set -x XDG_CURRENT_DESKTOP Unity
 alias discord='flatpak run com.discordapp.Discord'
 
 # sway startup
-if test (tty) = "/dev/tty1"
+if test (tty) = "/dev/pts/0"
   sway
 end
