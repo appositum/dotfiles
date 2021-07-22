@@ -106,7 +106,7 @@ end
 
 # nix search location + source file
 set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
-source /home/appositum/.nix-profile/etc/profile.d/nix.fish;
+source /home/appositum/.nix-profile/etc/profile.d/nix.fish
 
 eval (opam env)
 set -x PATH "$HOME/.cargo/bin:$PATH"
@@ -132,4 +132,4 @@ if test (tty) = "/dev/pts/0"
   sway
 end
 
-export PATH="$HOME/.cabal/bin:/home/appositum/.ghcup/bin:$PATH"
+set -gx PATH "$HOME/.cabal/bin:/home/appositum/.ghcup/bin:$PATH"
