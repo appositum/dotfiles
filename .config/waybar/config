@@ -106,7 +106,7 @@
   },
   "cpu": {
     "tooltip": false,
-    "format": " {usage:2}%"
+    "format": " {:2}%"
   },
   "network": {
     "format": "{icon}  {ifname}",
