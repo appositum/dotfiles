@@ -14,7 +14,7 @@ alias tarbz2='tar jxvf'
 alias copy='xclip -selection clipboard'
 alias geotrack='curl -L ipinfo.io/IP'
 if test -e /usr/bin/batcat
-  alias cat='batcat'
+  alias cat='batcat --theme base16'
 end
 
 # Tmux shortcuts
@@ -110,6 +110,7 @@ source /home/appositum/.nix-profile/etc/profile.d/nix.fish
 
 eval (opam env)
 set -x PATH "$HOME/.cargo/bin:$PATH"
+set -x RUST_SRC_PATH "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"
 
 # yarn stuff to path
 #set -gx PATH /home/eddie/.yarn/bin $PATH
