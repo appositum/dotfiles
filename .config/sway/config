@@ -266,11 +266,11 @@ bar {
 include @sysconfdir@/sway/config.d/*
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/increase
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.config/sway/scripts/volume/increase.sh
 
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/decrease
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/sway/scripts/volume/decrease.sh
 
-bindsym XF86AudioMute exec --no-startup-id $HOME/.config/sway/scripts/volume_utils/mute
+bindsym XF86AudioMute exec --no-startup-id $HOME/.config/sway/scripts/volume/mute.pl
 
 # Screenshot with grim + slurp
 bindsym --release $mod+Shift+Print exec $HOME/.config/sway/scripts/screenshot.sh
