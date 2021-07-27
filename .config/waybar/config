@@ -62,6 +62,7 @@
   },
   "custom/system": {
     "format": "",
+    "tooltip": false,
     "on-click": "swaynag -m '' -b 'Exit' 'swaymsg exit' -b 'Reload' 'swaymsg reload' -b 'Reboot' 'swaymsg exec systemctl reboot' -b 'Shut down' 'systemctl poweroff'",
     "on-click-right": "swaymsg mode System"
   },
@@ -95,7 +96,7 @@
         "car": "",
         "default": ["", ""]
     },
-    "on-click": "$HOME/.config/sway/scripts/volume_utils/mute"
+    "on-click": "$HOME/.config/sway/scripts/volume/mute.pl"
   },
   "temperature": {
     "thermal-zone": 2,
@@ -112,11 +113,11 @@
     "format": "{icon}  {ifname}",
     "format-wifi": "{icon} {signalStrength}",
     "format-ethernet": "{icon} {ifname}",
-    "format-disconnected": "Offline",
+    "format-disconnected": "{icon} offline",
     "format-icons": {
       "wifi": [""],
-      "ethernet": [""],
-      "disconnected": [""]
+      "ethernet": [" "],
+      "disconnected": [""]
     },
     "tooltip": true,
     "tooltip-format": "{essid}\nIP: {ipaddr}\nRate: {bandwidthUpBits} / {bandwidthDownBits}"
