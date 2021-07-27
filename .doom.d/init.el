@@ -109,7 +109,7 @@
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
-       agda              ; types of types of types of types...
+       ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        ;;cc                ; C > C++ == 1
        ;;clojure           ; java with a lisp
@@ -130,8 +130,8 @@
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
        ;;(go +lsp)         ; the hipster dialect
-       haskell
        ;;(haskell +dante)  ; a language that's lazier than I am
+       haskell           ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        idris             ; a language you can depend on
        json              ; At least it ain't XML
