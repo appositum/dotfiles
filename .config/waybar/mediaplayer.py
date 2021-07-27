@@ -16,23 +16,23 @@ def on_play(player, status, manager):
 def on_metadata(player, metadata, manager):
     track_info = ''
 
-    if player.props.player_name == 'spotify' and \
-            'mpris:trackid' in metadata.keys() and \
+    if player.props.player_name == 'spotify':
+        if 'mpris:trackid' in metadata.keys() and \
             ':ad:' in player.props.metadata['mpris:trackid']:
-        track_info = 'AD PLAYING'
-    elif player.get_artist() != '' and player.get_title() != '':
-        track_info = '{artist} - {title}'.format(artist=player.get_artist(),
-                                                 title=player.get_title())
-    else:
-        sys.stdout.write('\n')
-        sys.stdout.flush()
-        return
+            track_info = 'AD PLAYING'
+        elif player.get_artist() != '' and player.get_title() != '':
+            track_info = '{artist} - {title}'.format(artist=player.get_artist(),
+                                                        title=player.get_title())
+        else:
+            sys.stdout.write('\n')
+            sys.stdout.flush()
+            return
 
-    if player.props.status == 'Playing':
-        sys.stdout.write(' ' + track_info + '\n')
-    else:
-        sys.stdout.write(' ' + track_info + '\n')
-    sys.stdout.flush()
+        if player.props.status == 'Playing':
+            sys.stdout.write(' ' + track_info + '\n')
+        else:
+            sys.stdout.write(' ' + track_info + '\n')
+        sys.stdout.flush()
 
 
 def on_name_appeared(manager, name):

@@ -137,7 +137,7 @@
       "format": " {}",
       "max-length": 40,
       "exec": "$HOME/.config/waybar/mediaplayer.py",
-      "on-click": "playerctl play-pause"
+      "on-click": "playerctl -p spotify play-pause"
   },
   "custom/wttr": {
       "format": "{}",
