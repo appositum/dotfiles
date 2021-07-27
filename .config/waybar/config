@@ -67,7 +67,7 @@
   },
   "disk": {
     "interval": 30,
-    "format": " {percentage_used:2}%",
+    "format": " {percentage_used:2}",
     "path": "/",
     "tooltip": true,
     "tooltip-format": "{used} / {total}"
@@ -83,9 +83,9 @@
   "pulseaudio": {
     //"scroll-step": 1,
     "max-length": 10,
-    "format": "{volume:3}% {icon}",
-    "format-bluetooth": "{volume:3}% ",
-    "format-muted": "{volume:3}% ",
+    "format": "{volume:3} {icon}",
+    "format-bluetooth": "{volume:3} ",
+    "format-muted": "{volume:3} ",
     "format-icons": {
         "headphones": "",
         "handsfree": "",
@@ -101,16 +101,16 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
     "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C ",
-    "format": " {temperatureC}°C"
+    "format-critical": "{temperatureC} ",
+    "format": " {temperatureC}"
   },
   "cpu": {
     "tooltip": false,
-    "format": " {:2}%"
+    "format": " {:2}"
   },
   "network": {
     "format": "{icon}  {ifname}",
-    "format-wifi": "{icon} {signalStrength}%",
+    "format-wifi": "{icon} {signalStrength}",
     "format-ethernet": "{icon} {ifname}",
     "format-disconnected": "Offline",
     "format-icons": {
@@ -129,8 +129,8 @@
   },
   "backlight": {
       // "device": "acpi_video1",
-      "format": "{percent:3}% {icon}",
-      "format-icons": ["", ""]
+      "format": "{percent:3} {icon}",
+      "format-icons": ["", "", ""]
   },
   "custom/spotify": {
       "format": " {}",
