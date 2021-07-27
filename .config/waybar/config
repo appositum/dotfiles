@@ -115,8 +115,8 @@
     "format-disconnected": "Offline",
     "format-icons": {
       "wifi": [""],
-      "ethernet": [""],
-      "disconnected": [""]
+      "ethernet": [""],
+      "disconnected": [""]
     },
     "tooltip": true,
     "tooltip-format": "{essid}\nIP: {ipaddr}\nRate: {bandwidthUpBits} / {bandwidthDownBits}"
@@ -136,7 +136,7 @@
       "format": " {}",
       "max-length": 40,
       "exec": "$HOME/.config/waybar/mediaplayer.py",
-      "on-click": "$HOME/.config/waybar/mediaplayer_on_click"
+      "on-click": "playerctl play-pause"
   },
   "custom/wttr": {
       "format": "{}",
