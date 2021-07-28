@@ -29,6 +29,12 @@
   --palenight-gray: #676E95;
   --palenight-white: #eeffff;
   --palenight-error: #ff5370;
+
+  /* overrides firefox variables to change back arrow colors
+   * under burguer submenus like history and bookmarks
+   */
+  --arrowpanel-color: var(--palenight-white) !important;
+  --arrowpanel-background: var(--palenight-bg) !important;
 }
 
 /* Tabs */
@@ -204,9 +210,11 @@ toolbar {
   color: var(--palenight-white) !important;
 }
 
-.urlbar-icon > image {
-  fill: #e0fbfc !important;
-  color: #e0fbfc !important;
+.urlbar-icon {
+  /*fill: #e0fbfc !important;
+  color: #e0fbfc !important;*/
+  color: #eeffff !important;
+  /* toggle reader view */
 }
 
 #urlbar-search-mode-indicator {
@@ -244,6 +252,26 @@ toolbar {
   color: green !important;
 }
 
+/* history */
 .sidebar-placesTree {
+  /* idk why this was here..
   color: red !important;
+  */
+}
+
+/* burguer icon menu dropdown */
+#appMenu-protonMainView[visible="true"] {
+  background-color: var(--palenight-bg) !important;
+  color: var(--palenight-white);
+}
+
+/* sub-menus like bookmarks and history, under the burguer menu */
+.PanelUI-subView {
+  background-color: var(--palenight-bg) !important;
+  color: var(--palenight-white);
+}
+
+/* Manage Account text under Burguer > Email */
+#fxa-menu-header-title {
+  color: var(--palenight-white) !important;
 }
