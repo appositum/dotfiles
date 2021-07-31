@@ -4,7 +4,6 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'wakatime/vim-wakatime'
 Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'elixir-editors/vim-elixir'
@@ -227,3 +226,4 @@ map <C-h> <Esc>:bfirst<CR>
 map <C-l> <Esc>:blast<CR>
 
 highlight CursorLineNr guifg=#c792ea guibg=#474d69
+highlight Normal guibg=NONE ctermbg=NONE
