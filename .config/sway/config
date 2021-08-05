@@ -235,9 +235,9 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 
 ### Theme
-set $bg-color            #292d3e
+set $bg-color            #c792ea
 set $inactive-bg-color   #292d3e
-set $text-color          #c792ea
+set $text-color          #292d3e
 set $inactive-text-color #676e95
 set $urgent-bg-color     #ff5370
 
