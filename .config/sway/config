@@ -240,13 +240,14 @@ set $inactive-bg-color   #292d3e
 set $text-color          #292d3e
 set $inactive-text-color #676e95
 set $urgent-bg-color     #ff5370
+set $urgent-text-color   #959dcb
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          $bg-color $bg-color
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color $bg-color
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color $bg-color
-client.urgent           $urgent-bg-color    $urgent-bg-color   #959dcb $bg-color $bg-color
+client.focused          $bg-color           $bg-color          $text-color          $bg-color   $text-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $text-color $text-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $text-color $text-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $urgent-text-color   $bg-color $bg-color
 
 
 bar {
@@ -291,4 +292,4 @@ font pango:mononoki 12
 # notifier
 exec mako
 
-default_border pixel 2
+default_border pixel 0
