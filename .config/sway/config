@@ -274,7 +274,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.config/sway/scripts/vol
 bindsym XF86AudioMute exec --no-startup-id $HOME/.config/sway/scripts/volume/mute.pl
 
 # Screenshot with grim + slurp
-bindsym --release $mod+Shift+Print exec $HOME/.config/sway/scripts/screenshot.sh
+bindsym --release $mod+Tab+Print exec $HOME/.config/sway/scripts/screenshot.sh
 bindsym --release $mod+Print exec $HOME/.config/sway/scripts/screenshot_full.sh
 
 # Sreen brightness controls
