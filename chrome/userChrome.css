@@ -275,3 +275,17 @@ toolbar {
 #fxa-menu-header-title {
   color: var(--palenight-white) !important;
 }
+
+#urlbar-zoom-button {
+  color: var(--palenight-white) !important;
+}
+
+/* option bar when you press Alt */
+#titlebar {
+  background-color: var(--palenight-bg);
+}
+
+/* inner bar with option names like File, Edit etc */
+#main-menubar {
+  color: var(--palenight-white);
+}
