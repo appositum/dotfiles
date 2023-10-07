@@ -6,7 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'drewtempelmeyer/palenight.vim'
+"Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'neovimhaskell/haskell-vim'
@@ -25,13 +25,13 @@ syntax on
 set t_Co=256
 set termguicolors
 set number
-set clipboard=unnamed
+set clipboard=unnamedplus
 set expandtab
 set tabstop=2
 set softtabstop=0
 set shiftwidth=2
 set laststatus=2
-set showtabline=2
+"set showtabline=2
 set hlsearch
 set cursorline
 set autoindent
@@ -49,9 +49,14 @@ set number relativenumber
 autocmd InsertEnter * :set number norelativenumber
 autocmd InsertLeave * :set number relativenumber
 
-highlight CursorLine guibg=#2a2b3c
-highlight CursorLineNr guibg=#45475a guifg=#cba6f7
-highlight Normal guibg=NONE ctermbg=NONE
+hi TabLineFill guifg=LightGreen guibg=DarkGreen
+hi TabLine guifg=#ff0000 guibg=#00ff00
+hi TabLineSel guifg=Red guibg=Yellow
+hi Title guifg=LightBlue guibg=Magenta
+
+hi CursorLine guibg=#313244
+hi CursorLineNr guibg=#313244 guifg=#cba6f7
+hi Normal guibg=NONE ctermbg=NONE
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -68,7 +73,7 @@ let g:haskell_indent_case = 2
 let g:haskell_indent_where = 6
 let g:haskell_indent_before_where = 2
 let g:haskell_indent_after_bare_where = 2
-let g:haskell_indent_do = 2
+let g:haskell_indent_do = 4
 let g:haskell_indent_in = 0
 
 let g:palenight_terminal_italics=1
@@ -85,7 +90,7 @@ let g:lightline = {
 
 let g:lightline.enable = {
         \ 'statusline': 1,
-        \ 'tabline': 1
+        \ 'tabline': 2
         \ }
 let g:lightline.tabline = {
         \  'left':  [ [ 'tabs' ] ],
@@ -95,8 +100,8 @@ let g:lightline.tab = {
         \ 'active':   [ 'tabnum', 'filename', 'modified' ],
         \ 'inactive': [ 'tabnum', 'filename', 'modified' ]
         \ }
-let g:lightline.separator = { 'left': '', 'right': '' }
-let g:lightline.subseparator = { 'left': '', 'right': '' }
+"let g:lightline.separator = { 'left': '', 'right': '' }
+"let g:lightline.subseparator = { 'left': '', 'right': '' }
 let g:lightline.component_function = {
   \ 'buffers': 'g:lightline.my.buffers',
   \ }
@@ -105,3 +110,4 @@ let g:lightline.my = {}
 function g:lightline.my.buffers()
   return 'buffers'
 endfunction
+
