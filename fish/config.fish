@@ -68,16 +68,16 @@ function fish_prompt
 
   if test -n "$git_dir"
     if [ (id -u) = 0 ]
-      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   else
     if [ (id -u) = 0 ]
-      printf ' %s%s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf ' %s%s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf ' %s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf ' %s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   end
