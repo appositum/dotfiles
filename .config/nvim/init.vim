@@ -1,3 +1,4 @@
+
 set shell=/usr/bin/fish
 
 set nocompatible
@@ -102,6 +103,10 @@ let g:lightline.tab = {
         \ }
 "let g:lightline.separator = { 'left': '', 'right': '' }
 "let g:lightline.subseparator = { 'left': '', 'right': '' }
+
+let g:lightline.separator = { 'left': '', 'right': '' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+
 let g:lightline.component_function = {
   \ 'buffers': 'g:lightline.my.buffers',
   \ }
