@@ -1,42 +1,32 @@
-# Package/system management
 alias inst='sudo apt install'
 alias remove='sudo apt remove'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
-alias reboot='sudo systemctl reboot'
 
-# tar management
 alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
-# Tools
-alias copy='xclip -selection clipboard'
-alias geotrack='curl -L ipinfo.io/IP'
 if test -e /usr/bin/batcat
   alias cat='batcat --theme base16'
 end
 
-# Tmux shortcuts
 alias tmuxl='tmux list-sessions'
 alias tmuxk='tmux kill-session -t'
 alias tmuxs='tmux switch -t'
 
-# git shortcuts
 alias gita='git add -A'
 alias gits='git status'
 alias gitd='git diff'
 alias gitl='git log --graph'
 alias gitcom='git commit'
-alias gitc='git checkout'
+alias gitch='git checkout'
 alias gitb='git branch'
-alias gitclone='/tools/git_clone.py'
-
-set REPOS /home/$USER/Documents/gitrepos
-set -x LC_ALL "C"
+alias gitc='git checkout'
+alias gitst='git stash'
 
 function fish_greeting
-  set last (last -R -F -1 $USER | head -1)
+  set last (last -R -F -1 $USER | tail -1)
   set login_time (echo $last | awk '{print $3,$4,$5,$6,$7}')
   set quote (fortune)
   echo -e "Last login: $login_time\n\n$quote" | cowsay | lolcat
@@ -49,8 +39,6 @@ function fish_title
   echo "$h ❯ $p"
 end
 
-
-# Colors for the prompt
 set red "\033[0;31m"
 set yellow "\033[0;33m"
 set blue "\033[0;34m"
@@ -80,20 +68,27 @@ function fish_prompt
 
   if test -n "$git_dir"
     if [ (id -u) = 0 ]
-      printf '%s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf ''); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf '%s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (set fork (printf ''); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   else
     if [ (id -u) = 0 ]
-      printf '%s%s %s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf ' %s%s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf '%s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (basename (prompt_pwd)) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf ' %s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   end
 end
+
+eval (opam env)
+
+set -gx PATH "$HOME/.cargo/bin:$PATH"
+set -gx PATH "$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+
+set -x GPG_TTY (tty)
 
 # git commit
 set -x VISUAL "vim"
@@ -104,33 +99,9 @@ and not set -q TMUX
     exec tmux -u
 end
 
-# nix search location + source file
-set -x NIX_PATH "nixpkgs=/home/appositum/.nix-defexpr/channels/nixpkgs"
-source /home/appositum/.nix-profile/etc/profile.d/nix.fish
-
-eval (opam env)
-set -x PATH "$HOME/.cargo/bin:$PATH"
-set -x RUST_SRC_PATH "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library"
-
-# yarn stuff to path
-#set -gx PATH /home/eddie/.yarn/bin $PATH
-
-set -x XKB_DEFAULT_LAYOUT br
-set -x XKB_DEFAULT_OPTIONS compose:ralt,ctrl:nocaps
-
 # ssh agent
 if test -z (pgrep ssh-agent | string collect)
     eval (ssh-agent -c)
     set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
     set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 end
-
-# waybar tray
-set -x XDG_CURRENT_DESKTOP Unity
-
-# sway startup
-if test (tty) = "/dev/pts/0"
-  sway
-end
-
-set -gx PATH "$HOME/.cabal/bin:/home/appositum/.ghcup/bin:$PATH"
