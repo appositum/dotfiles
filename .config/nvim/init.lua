@@ -3,7 +3,7 @@ local load = function(mod)
   require(mod)
 end
 
-load('user.settings')
+load('user.options')
 load('user.commands')
 load('user.keymaps')
 require('user.plugins')
