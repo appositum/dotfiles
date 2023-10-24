@@ -2,6 +2,7 @@ alias inst='sudo apt install'
 alias remove='sudo apt remove'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
+alias ls='eza --icons=always'
 
 alias tarxz='tar xvf'
 alias targz='tar zxvf'
@@ -52,6 +53,9 @@ set reset "\033[00m"
 set fish_git_dirty_color red
 set fish_git_not_dirty_color green
 
+function fish_right_prompt
+end
+
 function parse_git_branch
   set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
   set -l git_status (git status -s)
@@ -100,8 +104,8 @@ and not set -q TMUX
 end
 
 # ssh agent
-if test -z (pgrep ssh-agent | string collect)
-    eval (ssh-agent -c)
-    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
-end
+# if test -z (pgrep ssh-agent | string collect)
+#     eval (ssh-agent -c)
+#     set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+#     set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+# end

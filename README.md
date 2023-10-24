@@ -12,4 +12,4 @@
 - `swaylock-effects`
 - `waybar`
 - `xclip`
-- `lsd`
+- `eza`
