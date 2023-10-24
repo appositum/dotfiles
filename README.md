@@ -12,3 +12,4 @@
 - `swaylock-effects`
 - `waybar`
 - `xclip`
+- `lsd`
