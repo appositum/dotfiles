@@ -7,6 +7,7 @@ vim.keymap.set({'n', 'x', 'o'}, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
 vim.keymap.set('n', '<leader>o', 'o<Esc>')
 vim.keymap.set('n', '<leader>O', 'O<Esc>')
+vim.keymap.set('n', '<leader>s', 'i<Space><Esc>')
 
 -- Basic clipboard interaction
 vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- copy
