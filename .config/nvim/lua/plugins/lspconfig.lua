@@ -70,6 +70,17 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        signs = {
+          severity_limit = "Warning",
+        },
+        virtual_text = {
+          severity_limit = "Warning",
+        },
+      }
+    )
+
     lspconfig["rust_analyzer"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
