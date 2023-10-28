@@ -13,3 +13,4 @@
 - `waybar`
 - `xclip`
 - `eza`
+- `batcat`
