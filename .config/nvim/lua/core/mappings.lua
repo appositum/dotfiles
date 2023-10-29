@@ -23,6 +23,10 @@ M.general = {
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
 
+    ["<leader>o"] = { "o<Esc>", "Add newline on bottom" },
+    ["<leader>O"] = { "O<Esc>", "Add newline on top" },
+    ["<leader>s"] = { "i<Space><Esc>", "Add whitespace" },
+
     -- save
     ["<leader>w"] = { "<cmd> w <CR>", "Save file" },
 
