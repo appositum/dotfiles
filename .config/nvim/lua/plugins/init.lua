@@ -28,7 +28,9 @@ local default_plugins = {
 
       -- execute colorizer as soon as possible
       vim.defer_fn(function()
-        require("colorizer").attach_to_buffer(0)
+        require("colorizer").attach_to_buffer(0, {
+          names = false
+        })
       end, 0)
     end,
   },
