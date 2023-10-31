@@ -15,6 +15,12 @@ M.ui = {
       bg = "grey",
       fg = "purple",
     }
+  },
+  tabufline = {
+    enabled = false,
+  },
+  nvdash = {
+    enabled = false,
   }
 }
 
