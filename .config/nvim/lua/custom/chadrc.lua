@@ -6,8 +6,26 @@ M.plugins = "custom.plugins"
 M.ui = {
   theme = "catppuccin",
   statusline = {
-    theme = "default",
-    separator_style = "default",
+    overriden_modules = function (modules)
+      modules[10] = "%#SepHl#" .. ""
+        .. "%#IconHl#" .. ""
+        .. "%#SepHl#" .. "█"
+        .. "%#TextHl#" .. " %l:%c "
+    end
+  },
+  hl_add = {
+    SepHl = {
+      fg = "yellow",
+      bg = "lightbg",
+    },
+    IconHl = {
+      fg = "lightbg",
+      bg = "yellow",
+    },
+    TextHl = {
+      fg = "yellow",
+      bg = "lightbg",
+    },
   },
   hl_override = {
     CursorLine = {
@@ -23,6 +41,9 @@ M.ui = {
   },
   nvdash = {
     enabled = false,
+  },
+  cmp = {
+    style = "atom_colored"
   }
 }
 
