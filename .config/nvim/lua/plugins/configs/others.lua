@@ -11,6 +11,7 @@ M.blankline = {
     "TelescopePrompt",
     "TelescopeResults",
     "mason",
+    "nvdash",
     "nvcheatsheet",
     "",
   },
@@ -18,7 +19,7 @@ M.blankline = {
   show_trailing_blankline_indent = false,
   show_first_indent_level = false,
   show_current_context = true,
-  show_current_context_start = false,
+  show_current_context_start = true,
 }
 
 M.luasnip = function(opts)
@@ -50,12 +51,12 @@ end
 
 M.gitsigns = {
   signs = {
-    add = { text = "│" }, -- 
-    change = { text = "│" }, -- 
-    delete = { text = "│" }, -- 󰍵
-    topdelete = { text = "│" },
-    changedelete = { text = "│" },
-    untracked = { text = "┆" },
+    add = { text = "│" },
+    change = { text = "│" },
+    delete = { text = "󰍵" },
+    topdelete = { text = "‾" },
+    changedelete = { text = "~" },
+    untracked = { text = "│" },
   },
   on_attach = function(bufnr)
     utils.load_mappings("gitsigns", { buffer = bufnr })
