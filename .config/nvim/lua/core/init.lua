@@ -11,29 +11,26 @@ g.transparency = config.ui.transparency
 -------------------------------------- options ------------------------------------------
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
-opt.encoding = 'utf8'
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
 -- Indenting
 opt.expandtab = true
-opt.shiftwidth = 4
+opt.shiftwidth = 2
 opt.smartindent = true
-opt.tabstop = 4
+opt.tabstop = 2
 opt.softtabstop = 2
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
-opt.hlsearch = true
 
 -- Numbers
 opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
-opt.relativenumber = true
 
 -- disable nvim intro
 opt.shortmess:append "sI"
