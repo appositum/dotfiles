@@ -1,9 +1,9 @@
 {
-    "workbench.colorTheme": "Palenight Theme",
-    "editor.fontFamily": "mononoki, Consolas, 'Courier New', monospace",
-    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "editor.fontFamily": "'Mononoki Nerd Font', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
     "terminal.integrated.automationProfile.windows": {
-    
+
     },
     "terminal.integrated.defaultProfile.windows": "Debian (WSL)",
     "vim.camelCaseMotion.enable": true,
@@ -23,20 +23,43 @@
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.cursorBlinking": true,
     "elixirLS.dialyzerEnabled": false,
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors.insert": "#82b1ff",
-    "vim.statusBarColors.normal": "#7E57C2",
-    "vim.statusBarColors.visual": "#89DDFF",
-    "vim.statusBarColors.visualline": "#ffcb6b",
-    "vim.statusBarColors.visualblock": "#F78C6C",
-    "vim.statusBarColors.replace": "#C3E88D",
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#89DDFF",
-        "statusBar.noFolderBackground": "#89DDFF",
-        "statusBar.debuggingBackground": "#89DDFF",
-        "statusBar.foreground": "#000000",
-        "statusBarItem.remoteForeground": "#000000",
-        "statusBarItem.hoverBackground": "#ffffff4A",
-        "statusBarItem.activeBackground": "#ffffff80"
-    },
+    //"vim.statusBarColors.insert": "#82b1ff",
+    //"vim.statusBarColors.normal": "#7E57C2",
+    //"vim.statusBarColors.visual": "#89DDFF",
+    //"vim.statusBarColors.visualline": "#ffcb6b",
+    //"vim.statusBarColors.visualblock": "#F78C6C",
+    //"vim.statusBarColors.replace": "#C3E88D",
+    //"workbench.colorCustomizations": {
+    //  "statusBar.background": "#005f5f",
+    //  "statusBar.noFolderBackground": "#005f5f",
+    //  "statusBar.debuggingBackground": "#005f5f",
+    //  "statusBar.foreground": "#000000",
+    //  "statusBarItem.remoteForeground": "#000000",
+    //  "statusBarItem.hoverBackground": "#ffffff4A",
+    //  "statusBarItem.activeBackground": "#ffffff80"
+    //},
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {"before": ["w"], "after": ["\\", "w"]},
+      {"before": ["b"], "after": ["\\", "b"]},
+      {"before": ["e"], "after": ["\\", "e"]},
+    ],
+    "vim.operatorPendingModeKeyBindingsNonRecursive": [
+      {"before": ["i","w"], "after": ["i", "\\", "w"]},
+    ],
+    "editor.minimap.renderCharacters": false,
+    "security.allowedUNCHosts": [
+      "wsl.localhost"
+    ],
+    "ocaml.server.extraEnv": null,
+    "git.openRepositoryInParentFolders": "never",
+    "python.defaultInterpreterPath": "C:\\Users\\[user]\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.acceptSuggestionOnEnter": "off",
+    "files.insertFinalNewline": true,
+    "workbench.editor.empty.hint": "hidden",
+    "files.trimTrailingWhitespace": true,
+    "editor.minimap.enabled": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.zoomLevel": 1,
 }
