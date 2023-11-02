@@ -1,26 +1,34 @@
--- Shortcuts
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
-vim.keymap.set('n', '<leader>o', 'o<Esc>')
-vim.keymap.set('n', '<leader>O', 'O<Esc>')
-vim.keymap.set('n', '<leader>s', 'i<Space><Esc>')
+local M = {}
 
--- Basic clipboard interaction
-vim.keymap.set({'n', 'x'}, 'gy', '"+y') -- copy
-vim.keymap.set({'n', 'x'}, 'gp', '"+p') -- paste
+M.general = {
+  n = {
+    -- Shortcuts
+    ["<leader>a"] = { ":keepjumps normal! ggVG<cr>", " idk"},
+    ["<leader>o"] = { "o<Esc>", "Insert bottom newline in normal mode"},
+    ["<leader>O"] = { "O<Esc>", "Insert top newline in normal mode" },
+    ["<leader>s"] = { "i<Space><Esc>", "Insert whitespace in normal mode"},
 
--- Delete text
-vim.keymap.set({'n', 'x'}, 'x', '"_x')
+    -- Basic clipboard interaction
+    -- vim.keymap.set({"n" = { "x"} = { "gy" = { ""+y") -- copy
+    -- vim.keymap.set({"n" = { "x"} = { "gp" = { ""+p") -- paste
 
--- Commands
-vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
-vim.keymap.set('n', '<leader>bq', '<cmd>bdelete<cr>')
-vim.keymap.set('n', '<leader>bl', '<cmd>buffer #<cr>')
+    -- -- Delete text
+    ["x"] = { '"_x', "Delete without copying"},
 
-vim.keymap.set('n', '<leader>t', '<cmd>NvimTreeToggle<cr>')
+    -- Commands
+    ["<leader>w"] = { "<cmd>write<cr>", "Save file"},
+    ["<leader>bq"] = { "<cmd>bdelete<cr>", "kill buffer"},
+    ["<leader>bl"] = { "<cmd>buffer #<cr>", " idk lol"},
 
-vim.keymap.set('n', '<leader>?', '<cmd>Telescope help_tags<cr>')
-vim.keymap.set('n', '<leader><space>', '<cmd>Telescope buffers initial_mode=normal<cr>')
-vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
-vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
-vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers initial_mode=normal<cr>')
-vim.keymap.set('n', '<leader>fs', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+    -- ["<leader>t"] = { "<cmd>NvimTreeToggle<cr>" },
+
+    ["<leader>?"] = { "<cmd>Telescope help_tags<cr>", "Telescope help tags" },
+    ["<leader><space>"] = { "<cmd>Telescope buffers initial_mode=normal<cr>", "Telescope buffers" },
+    ["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
+    ["<leader>fd"] = { "<cmd>Telescope diagnostics<cr>", "Telescope diagnostics"},
+    ["<leader>fb"] = { "<cmd>Telescope buffers initial_mode=normal<cr>", "Telescope buffers"},
+    ["<leader>fs"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Telescope current file"},
+  }
+}
+
+return M
