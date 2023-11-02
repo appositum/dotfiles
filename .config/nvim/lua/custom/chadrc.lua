@@ -38,7 +38,7 @@ M.ui = {
     }
   },
   tabufline = {
-    enabled = false,
+    enabled = true,
   },
   nvdash = {
     enabled = false,
