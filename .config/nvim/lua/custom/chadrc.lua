@@ -29,9 +29,6 @@ M.ui = {
     },
   },
   hl_override = {
-    CursorLine = {
-      bg = "lightbg",
-    },
     CursorLineNr = {
       bg = "grey",
       fg = "purple",
