@@ -39,7 +39,7 @@ return {
         "lua",
         "ocaml",
         "python",
-        "rust",
+        -- "rust",
         "yaml",
       }
     }
