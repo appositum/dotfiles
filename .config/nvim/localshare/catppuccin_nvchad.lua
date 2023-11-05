@@ -34,7 +34,8 @@ M.base_30 = {
   lightbg = "#313244", -- "#2f2e3e",
   pmenu_bg = "#a6e3a1",
   folder_bg = "#89B4FA",
-  lavender = "#b4befe", -- "#c7d1ff"
+  lavender = "#b4befe", -- "#c7d1ff",
+  text = "#cdd6f4"
 }
 
 M.base_16 = {
@@ -43,7 +44,7 @@ M.base_16 = {
   base02 = "#2f2e3e",
   base03 = "#383747",
   base04 = "#414050",
-  base05 = "#bfc6d4",
+  base05 = "#cdd6f4", -- "#bfc6d4",
   base06 = "#ccd3e1",
   base07 = "#D9E0EE",
   base08 = "#F38BA8",
@@ -57,7 +58,7 @@ M.base_16 = {
 }
 
 M.polish_hl = {
-  ["@variable"] = { fg = M.base_30.lavender },
+  ["@variable"] = { fg = M.base_30.text },
   ["@property"] = { fg = M.base_30.teal },
   ["@variable.builtin"] = { fg = M.base_30.red },
 }
