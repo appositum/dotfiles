@@ -72,9 +72,9 @@ function fish_prompt
 
   if test -n "$git_dir"
     if [ (id -u) = 0 ]
-      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\uf126'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
     else
-      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\ue0a0'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
+      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\uf126'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
     end
 
   else
@@ -109,3 +109,5 @@ end
 #     set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
 #     set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 # end
+
+set -gx PATH "$HOME/.local/share/nvim/mason/bin:$PATH"
