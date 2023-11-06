@@ -10,6 +10,7 @@ local servers = {
   "hls",
   -- "rust-analyzer",
   "elixirls",
+  "pyright",
 }
 
 for _, lsp in ipairs(servers) do

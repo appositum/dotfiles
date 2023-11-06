@@ -66,6 +66,7 @@ return {
         "hls",
         "rust-analyzer",
         "elixirls",
+        "pyright",
       },
     },
   },
