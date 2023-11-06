@@ -77,35 +77,40 @@ return {
       require "custom.configs.lspconfig"
     end,
   },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    init = function()
-      local rainbow_delimiters = require("rainbow-delimiters")
-
-      require("rainbow-delimiters.setup").setup {
-        strategy = {
-          [""] = rainbow_delimiters.strategy["global"],
-          vim = rainbow_delimiters.strategy["local"],
-        },
-        query = {
-          [""] = "rainbow-delimiters",
-          lua = "rainbow-blocks",
-        },
-        highlight = {
-          'RainbowDelimiterRed',
-          'RainbowDelimiterOrange',
-          'RainbowDelimiterYellow',
-          'RainbowDelimiterGreen',
-          'RainbowDelimiterCyan',
-          'RainbowDelimiterBlue',
-          'RainbowDelimiterViolet',
-        },
-        blacklist = {
-          -- it's super slow for these languages for some reason
-          'rust',
-          'haskell',
-        },
-      }
-    end,
-  }
+  -- {
+  --   "HiPhish/rainbow-delimiters.nvim",
+  --   init = function()
+  --     local rainbow_delimiters = require("rainbow-delimiters")
+  --
+  --     require("rainbow-delimiters.setup").setup {
+  --       strategy = {
+  --         [""] = rainbow_delimiters.strategy["global"],
+  --         vim = rainbow_delimiters.strategy["local"],
+  --         rust = rainbow_delimiters.strategy["local"],
+  --         haskell = rainbow_delimiters.strategy["local"],
+  --         elixir = rainbow_delimiters.strategy["local"],
+  --       },
+  --       query = {
+  --         [""] = "rainbow-delimiters",
+  --         lua = "rainbow-blocks",
+  --       },
+  --       highlight = {
+  --         'RainbowDelimiterRed',
+  --         'RainbowDelimiterOrange',
+  --         'RainbowDelimiterYellow',
+  --         'RainbowDelimiterGreen',
+  --         'RainbowDelimiterCyan',
+  --         'RainbowDelimiterBlue',
+  --         'RainbowDelimiterViolet',
+  --       },
+  --       blacklist = {
+  --         -- it's super slow for these languages for some reason
+  --         'rust',
+  --         'haskell',
+  --         'elixir',
+  --         'sh',
+  --       },
+  --     }
+  --   end,
+  -- }
 }
