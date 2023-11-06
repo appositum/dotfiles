@@ -13,7 +13,7 @@ return {
   },
 
   ["@character"] = {
-    fg = theme.base08,
+    fg = theme.base0B,
   },
 
   ["@constructor"] = {
@@ -65,7 +65,7 @@ return {
   },
 
   ["@function.macro"] = {
-    fg = theme.base08,
+    fg = theme.base0C,
   },
 
   ["@function.call"] = {
@@ -73,7 +73,7 @@ return {
   },
 
   ["@operator"] = {
-    fg = theme.base05,
+    fg = theme.base0C,
   },
 
   ["@keyword.operator"] = {
@@ -105,7 +105,7 @@ return {
   },
 
   ["@punctuation.bracket"] = {
-    fg = theme.base0C,
+    fg = theme.base05,
   },
 
   ["@punctuation.delimiter"] = {
@@ -121,7 +121,7 @@ return {
   },
 
   ["@string.regex"] = {
-    fg = theme.base0C,
+    fg = theme.base0A,
   },
 
   ["@string.escape"] = {
@@ -145,7 +145,7 @@ return {
   },
 
   ["@tag.delimiter"] = {
-    fg = theme.base0C,
+    fg = theme.base07,
   },
 
   ["@text"] = {
