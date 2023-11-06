@@ -27,6 +27,27 @@ M.ui = {
       fg = "yellow",
       bg = "lightbg",
     },
+    RainbowDelimiterRed = {
+      fg = "red"
+    },
+    RainbowDelimiterYellow = {
+      fg = "yellow"
+    },
+    RainbowDelimiterBlue = {
+      fg = "blue"
+    },
+    RainbowDelimiterOrange = {
+      fg = "orange"
+    },
+    RainbowDelimiterGreen = {
+      fg = "green"
+    },
+    RainbowDelimiterViolet = {
+      fg = "purple"
+    },
+    RainbowDelimiterCyan = {
+      fg = "cyan"
+    },
   },
   hl_override = {
     CursorLineNr = {
