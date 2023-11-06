@@ -4,14 +4,14 @@ return {
     enabled = false
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    opts = {
-      names = false
-    }
-  },
-  {
     "folke/which-key.nvim",
     enabled = false
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      names = false,
+    }
   },
   {
     "lukas-reineke/indent-blankline.nvim",
