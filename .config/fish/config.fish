@@ -41,17 +41,14 @@ function fish_title
 end
 
 set red "\033[0;31m"
+set green "\033[0;32m"
 set yellow "\033[0;33m"
 set blue "\033[0;34m"
-set purple "\033[0;35m"
+set purple "\033[01;35m"
+set cyan "\033[01;36m"
 set white "\033[01;37m"
 set white_thin "\033[0;37m"
-set green "\033[0;32m"
-set cyan "\033[01;36m"
 set reset "\033[00m"
-
-set fish_git_dirty_color red
-set fish_git_not_dirty_color green
 
 function fish_right_prompt
 end
@@ -60,30 +57,80 @@ function parse_git_branch
   set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
   set -l git_status (git status -s)
 
+  set -l unstaged_add (git status -s | grep '^??')
+  set -l unstaged_del (git status -s | grep '^ D')
+  set -l unstaged_mod (git status -s | grep '^ M')
+  set -l half_staged_mod (git status -s | grep '^MM')
+
+  set -l staged_add (git status -s | grep '^A')
+  set -l staged_del (git status -s | grep '^D')
+  set -l staged_mod (git status -s | grep '^M')
+  set -l rename (git status -s | grep '^R')
+
+  set -l icon_unstaged_add ""
+  set -l icon_unstaged_del ""
+  set -l icon_unstaged_mod ""
+
+  set -l icon_staged_add ""
+  set -l icon_staged_del ""
+  set -l icon_staged_mod ""
+  set -l icon_ren ""
+
+  if test -n "$unstaged_add"
+    set icon_unstaged_add (printf "\uf0fe ")
+  end
+
+  if test -n "$unstaged_del"
+    set icon_unstaged_del (printf "\uf146 ")
+  end
+
+  if test -n "$unstaged_mod"; or test -n "$half_staged_mod"
+    set icon_unstaged_mod (printf "\uea71 ")
+  end
+
+  if test -n "$staged_add"
+    set icon_staged_add (printf "\uf0fe ")
+  end
+
+  if test -n "$staged_del"
+    set icon_staged_del (printf "\uf146 ")
+  end
+
+  if test -n "$staged_mod"
+    set icon_staged_mod (printf "\uea71 ")
+  end
+
+  if test -n "$rename"
+    set icon_ren (printf "\uf443 ")
+  end
+
+  set -l unstaged (set_color red; printf '%s%s%s' (echo -e $icon_unstaged_mod) (echo -e $icon_unstaged_add) (echo -e $icon_unstaged_del); set_color white)
+  set -l staged (set_color green; printf '%s%s%s%s' (echo -e $icon_staged_mod) (echo -e $icon_staged_add) (echo -e $icon_staged_del) (echo -e $icon_ren); set_color white)
+
   if test -n "$git_status"
-    echo (set_color $fish_git_dirty_color)$branch(set_color normal)
+    printf '%s%s%s %s%s' (echo -e $yellow) (echo -e $branch) (echo -e $white) (echo -e $unstaged) (echo -e $staged)
   else
-    echo (set_color $fish_git_not_dirty_color)$branch(set_color normal)
+    printf '%s%s%s' (echo -e $green) (echo -e $branch) (echo -e $white)
   end
 end
 
 function fish_prompt
+  set -l last_status $status
+  set -l git_fork (set_color cyan; printf '\uf126')
   set -l git_dir (git rev-parse --git-dir 2> /dev/null)
+  set -l prompt_pwd (printf '%s%s' (echo -e $white) (prompt_pwd))
+  set -l prompt_cmd
+
+  if [ $last_status -ne 0 ]
+    set prompt_cmd (printf ' %s❯ %s' (echo -e $red) (echo -e $reset))
+  else
+    set prompt_cmd (printf ' %s❯ %s' (echo -e $purple) (echo -e $reset))
+  end
 
   if test -n "$git_dir"
-    if [ (id -u) = 0 ]
-      printf ' %s%s %s %s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\uf126'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
-    else
-      printf ' %s%s %s %s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (set fork (printf '\uf126'); echo -e $cyan$fork) (parse_git_branch) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
-    end
-
+    printf ' %s %s %s\n%s' (echo $prompt_pwd) (echo $git_fork) (parse_git_branch) (echo $prompt_cmd)
   else
-    if [ (id -u) = 0 ]
-      printf ' %s%s %s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $reset)
-    else
-      printf ' %s%s %s❯%s❯%s❯%s❯ %s' (echo -e $white) (prompt_pwd) (echo -e $red) (echo -e $yellow) (echo -e $green) (echo -e $purple) (echo -e $reset)
-    end
-
+    printf ' %s\n%s' (echo $prompt_pwd) (echo $prompt_cmd)
   end
 end
 
