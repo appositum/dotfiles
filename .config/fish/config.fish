@@ -29,8 +29,7 @@ alias gitst='git stash'
 function fish_greeting
   set last (last -R -F -1 $USER | tail -1)
   set login_time (echo $last | awk '{print $3,$4,$5,$6,$7}')
-  set quote (fortune)
-  echo -e "Last login: $login_time\n\n$quote" | cowsay | lolcat
+  echo -e "Last login: $login_time\n          .                      \n       . '                       \n   . '                           \n  .                              \n .                               \n .         .' '.            __   \n  .        .   .           (__\_ \n   .         .         . -{{_(|8)\n     ' .  . ' ' .  . '     (__/  \n" | lolcat -p 0.7
 end
 
 function fish_title
