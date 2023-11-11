@@ -8,7 +8,7 @@ local servers = {
   "cssls",
   "clangd",
   "hls",
-  -- "rust-analyzer",
+  "rust_analyzer",
   "elixirls",
   "pyright",
 }
@@ -26,7 +26,7 @@ lspconfig["elixirls"].setup {
   },
 }
 
-lspconfig.rust_analyzer.setup {
+lspconfig["rust_analyzer"].setup {
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
