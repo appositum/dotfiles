@@ -1,3 +1,4 @@
+
 return {
   {
     "NvChad/nvterm",
@@ -93,6 +94,28 @@ return {
       })
     end
   },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    after = "nvim-web-devicons",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+    },
+    cmd = {
+      "Barbecue"
+    },
+    opts = {
+      theme = {
+        normal = { fg = "#b4befe" },
+        separator = { fg = "#6c7096" },
+        ellipsis = { fg = "#6c7096" },
+      }
+    },
+    init = function()
+      require("barbecue.ui").toggle(true)
+    end
+  }
   -- {
   --   "HiPhish/rainbow-delimiters.nvim",
   --   init = function()
