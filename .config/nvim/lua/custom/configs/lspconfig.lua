@@ -26,25 +26,3 @@ lspconfig["elixirls"].setup {
   },
 }
 
-lspconfig["rust_analyzer"].setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ['rust-analyzer'] = {
-      cmd = {
-        "rust-analyzer",
-      },
-      filetypes = {
-        "rust"
-      },
-      diagnostics = {
-        enable = true;
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-    }
-  }
-}

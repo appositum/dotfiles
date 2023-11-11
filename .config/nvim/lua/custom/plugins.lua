@@ -77,6 +77,22 @@ return {
       require "custom.configs.lspconfig"
     end,
   },
+  {
+    "simrat39/rust-tools.nvim",
+    ft = { "rust" },
+    dependencies = "neovim/nvim-lspconfig",
+    config = function()
+      local configs = require("plugins.configs.lspconfig")
+
+      require("rust-tools").setup({
+        server = {
+          standalone = true,
+          capabilities = configs.capabilities,
+          on_attach = configs.on_attach,
+        }
+      })
+    end
+  },
   -- {
   --   "HiPhish/rainbow-delimiters.nvim",
   --   init = function()
