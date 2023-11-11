@@ -1,3 +1,4 @@
+
 return {
   {
     "NvChad/nvterm",
@@ -93,6 +94,7 @@ return {
 
       require("rust-tools").setup({
         tools = {
+          -- simply disabling inlayHintProvider under `on_attach` doesnt seem to work
           inlay_hints = {
             auto = false,
           },
@@ -100,7 +102,14 @@ return {
         server = {
           standalone = true,
           capabilities = configs.capabilities,
-          on_attach = configs.on_attach,
+          on_attach = function(client, bufnr)
+            client.server_capabilities.signatureHelpProvider = false
+            client.server_capabilities.inlayHintProvider = {
+              resolveProvider = false
+            }
+
+            configs.on_attach(client, bufnr)
+          end,
         },
         settings = {
           ["rust-analyzer"] = {
