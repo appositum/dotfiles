@@ -1,4 +1,3 @@
-
 return {
   {
     "NvChad/nvterm",
@@ -79,17 +78,38 @@ return {
     end,
   },
   {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function ()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
     "simrat39/rust-tools.nvim",
-    ft = { "rust" },
+    ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
     config = function()
       local configs = require("plugins.configs.lspconfig")
 
       require("rust-tools").setup({
+        tools = {
+          inlay_hints = {
+            auto = false,
+          },
+        },
         server = {
           standalone = true,
           capabilities = configs.capabilities,
           on_attach = configs.on_attach,
+        },
+        settings = {
+          ["rust-analyzer"] = {
+            cmd = { "rust-analyzer" },
+            filetypes = { "rust" },
+            diagnostics = {
+              enable = true
+            }
+          }
         }
       })
     end
