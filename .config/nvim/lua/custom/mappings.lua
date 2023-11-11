@@ -7,7 +7,7 @@ M.general = {
     ["<leader>o"] = { "o<Esc>", "Insert bottom newline in normal mode"},
     ["<leader>O"] = { "O<Esc>", "Insert top newline in normal mode" },
     ["<leader>s"] = { "i<Space><Esc>", "Insert whitespace in normal mode"},
-    ["<leader><cr>"] = { "i<cr><Esc>", "Insert newline on cursor position in normal mode"},
+    ["<leader>S"] = { "a<Space><Esc>", "Insert whitespace in normal mode"},
 
     -- Basic clipboard interaction
     -- vim.keymap.set({"n" = { "x"} = { "gy" = { ""+y") -- copy

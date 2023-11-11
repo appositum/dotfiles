@@ -39,7 +39,7 @@ return {
         "lua",
         "ocaml",
         "python",
-        -- "rust",
+        "rust",
         "yaml",
       }
     }
@@ -108,7 +108,6 @@ return {
   --         'rust',
   --         'haskell',
   --         'elixir',
-  --         'sh',
   --       },
   --     }
   --   end,
