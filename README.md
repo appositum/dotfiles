@@ -1,4 +1,3 @@
-- `alacritty`
 - `alsa-utils` (amixer)
 - `awesome-terminal-fonts`
 - `curl`
