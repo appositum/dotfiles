@@ -13,13 +13,16 @@ M.general = {
     -- vim.keymap.set({"n" = { "x"} = { "gy" = { ""+y") -- copy
     -- vim.keymap.set({"n" = { "x"} = { "gp" = { ""+p") -- paste
 
-    -- -- Delete text
+    -- Delete text
     ["x"] = { '"_x', "Delete without copying"},
 
     -- Commands
     ["<leader>w"] = { "<cmd>write<cr>", "Save file"},
     ["<leader>bq"] = { "<cmd>bdelete<cr>", "kill buffer"},
     ["<leader>bl"] = { "<cmd>buffer #<cr>", " idk lol"},
+
+    ["mj"] = { '"zdd"zp', "Move line down"},
+    ["mk"] = { '"zddk"zP', "Move line up"},
 
     -- ["<leader>t"] = { "<cmd>NvimTreeToggle<cr>" },
 
