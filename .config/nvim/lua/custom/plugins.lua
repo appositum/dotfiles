@@ -1,4 +1,3 @@
-
 return {
   {
     "NvChad/nvterm",
@@ -79,11 +78,19 @@ return {
     end,
   },
   {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function ()
-      vim.g.rustfmt_autosave = 1
-    end
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      pickers = {
+        buffers = {
+          initial_mode = "normal",
+          mappings = {
+            n = {
+              ["<leader>d"] = "delete_buffer"
+            }
+          }
+        }
+      }
+    }
   },
   {
     "simrat39/rust-tools.nvim",
@@ -144,7 +151,7 @@ return {
     init = function()
       require("barbecue.ui").toggle(true)
     end
-  }
+  },
   -- {
   --   "HiPhish/rainbow-delimiters.nvim",
   --   init = function()

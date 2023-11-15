@@ -22,10 +22,10 @@ M.general = {
     ["mk"] = { '"zddk"zP', "Move line up"},
 
     ["<leader>?"] = { "<cmd>Telescope help_tags<cr>", "Telescope help tags" },
-    ["<leader><space>"] = { "<cmd>Telescope buffers initial_mode=normal<cr>", "Telescope buffers" },
+    ["<leader><space>"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers" },
     ["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "Telescope live grep" },
     ["<leader>fd"] = { "<cmd>Telescope diagnostics<cr>", "Telescope diagnostics"},
-    ["<leader>fb"] = { "<cmd>Telescope buffers initial_mode=normal<cr>", "Telescope buffers"},
+    ["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "Telescope buffers"},
     ["<leader>fs"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Telescope current file"},
   }
 }
