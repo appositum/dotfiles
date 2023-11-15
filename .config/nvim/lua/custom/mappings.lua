@@ -8,10 +8,7 @@ M.general = {
     ["<leader>O"] = { "O<Esc>", "Insert top newline in normal mode" },
     ["<leader>s"] = { "i<Space><Esc>", "Insert whitespace in normal mode"},
     ["<leader>S"] = { "a<Space><Esc>", "Insert whitespace in normal mode"},
-
-    -- Basic clipboard interaction
-    -- vim.keymap.set({"n" = { "x"} = { "gy" = { ""+y") -- copy
-    -- vim.keymap.set({"n" = { "x"} = { "gp" = { ""+p") -- paste
+    ["<leader><Enter>"] = { "i<Enter><Esc>", "Insert newline on cursor in normal mode"},
 
     -- Delete text
     ["x"] = { '"_x', "Delete without copying"},
@@ -23,8 +20,6 @@ M.general = {
 
     ["mj"] = { '"zdd"zp', "Move line down"},
     ["mk"] = { '"zddk"zP', "Move line up"},
-
-    -- ["<leader>t"] = { "<cmd>NvimTreeToggle<cr>" },
 
     ["<leader>?"] = { "<cmd>Telescope help_tags<cr>", "Telescope help tags" },
     ["<leader><space>"] = { "<cmd>Telescope buffers initial_mode=normal<cr>", "Telescope buffers" },
