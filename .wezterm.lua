@@ -82,11 +82,66 @@ config.default_domain = 'WSL:Debian'
 
 config.window_close_confirmation = 'NeverPrompt'
 
+config.leader = { key = 'q', mods = 'CTRL' }
 config.keys = {
   {
     key = 'w',
     mods = 'CTRL | SHIFT',
     action = wezterm.action.CloseCurrentTab { confirm = false },
+  },
+  {
+    key = 'h',
+    mods = 'CTRL | SHIFT',
+    action = wezterm.action.AdjustPaneSize { 'Left', 5 },
+  },
+  {
+    key = 'j',
+    mods = 'CTRL | SHIFT',
+    action = wezterm.action.AdjustPaneSize { 'Down', 5 },
+  },
+  { key = 'k',
+    mods = 'CTRL | SHIFT',
+    action = wezterm.action.AdjustPaneSize { 'Up', 5 }
+  },
+  {
+    key = 'l',
+    mods = 'CTRL | SHIFT',
+    action = wezterm.action.AdjustPaneSize { 'Right', 5 },
+  },
+  {
+    key = '5',
+    mods = 'LEADER',
+    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = '\'',
+    mods = 'LEADER',
+    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
+  },
+  {
+    key = 'h',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Left",
+  },
+  {
+    key = 'j',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Down",
+  },
+  {
+    key = 'k',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Up",
+  },
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.ActivatePaneDirection "Right",
+  },
+  {
+    key = '[',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateCopyMode,
   },
 }
 
