@@ -16,8 +16,8 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
-      char = "┃",
-      context_char = "┃",
+      -- char = "┃",
+      -- context_char = "┃",
       show_current_context_start = false,
     },
   },
