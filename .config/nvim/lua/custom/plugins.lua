@@ -149,7 +149,7 @@ return {
       }
     },
     init = function()
-      require("barbecue.ui").toggle(true)
+      require("barbecue.ui").toggle(false)
     end
   },
   -- {
