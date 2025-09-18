@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Catppuccin Mocha'
-config.font_size = 13.5
+config.font_size = 13
 config.font = wezterm.font('Mononoki Nerd Font Mono', {
   weight = 'Bold',
   italic = false,
