@@ -16,9 +16,9 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
-      -- char = "┃",
-      -- context_char = "┃",
-      show_current_context_start = false,
+       -- char = "┃",
+       -- context_char = "┃",
+       show_current_context_start = false,
     },
   },
   {
@@ -120,6 +120,7 @@ return {
         },
         settings = {
           ["rust-analyzer"] = {
+            root_dir = require("lspconfig").util.root_pattern(".git", ".hg"),
             cmd = { "rust-analyzer" },
             filetypes = { "rust" },
             diagnostics = {

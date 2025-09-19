@@ -262,6 +262,8 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+
+  "edwinb/idris2-vim",
 }
 
 local config = require("core.utils").load_config()
