@@ -26,6 +26,11 @@ alias gitb='git branch'
 alias gitc='git checkout'
 alias gitst='git stash'
 
+# count lines in a directory based on a file name match
+function cl -a match dir
+  find $dir -name $match | xargs wc -l
+end
+
 function fish_greeting
   set last (last -R -F -1 $USER | tail -1)
   set login_time (echo $last | awk '{print $3,$4,$5,$6,$7}')
