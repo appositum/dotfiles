@@ -152,10 +152,10 @@ set -x GPG_TTY (tty)
 set -x VISUAL "vim"
 
 # tmux
-if status is-interactive
-and not set -q TMUX
-    exec tmux -u
-end
+# if status is-interactive
+# and not set -q TMUX
+#     exec tmux -u
+# end
 
 # ssh agent
 # if test -z (pgrep ssh-agent | string collect)
