@@ -164,3 +164,4 @@ end
 # end
 
 set -gx PATH "$HOME/.local/share/nvim/mason/bin:$PATH"
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME; set -gx PATH $HOME/.cabal/bin $PATH /home/appositum/.ghcup/bin # ghcup-env
