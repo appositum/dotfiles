@@ -25,6 +25,8 @@ alias gitch='git checkout'
 alias gitb='git branch'
 alias gitc='git checkout'
 alias gitst='git stash'
+alias gitp='git pull'
+alias gitP='git push'
 
 # count lines in a directory based on a file name match
 function cl -a match dir
@@ -35,7 +37,7 @@ function fish_greeting
   # set last (last -R -F -1 $USER | tail -1)
   # set login_time (echo $last | awk '{print $3,$4,$5,$6,$7}')
   # echo -e "Last login: $login_time\n          .                      \n       . '                       \n   . '                           \n  .                              \n .                               \n .         .' '.            __   \n  .        .   .           (__\_ \n   .         .         . -{{_(|8)\n     ' .  . ' ' .  . '     (__/  \n" | lolcat -p 0.7
-  echo -e "          .                      \n       . '                       \n   . '                           \n  .                              \n .                               \n .         .' '.            __   \n  .        .   .           (__\_ \n   .         .         . -{{_(|8)\n     ' .  . ' ' .  . '     (__/  \n" | lolcat -p 0.7
+  echo -e "          .                      \n       . '                       \n   . '                           \n  .                              \n .                               \n .         .' '.            __   \n  .        .   .           (__\\ \n   .         .         . -{{_(|8)\n     ' .  . ' ' .  . '     (__/  \n" | lolcat -p 0.7
 end
 
 function fish_title
@@ -168,3 +170,6 @@ set -gx PATH "$HOME/.local/share/nvim/mason/bin:$PATH"
 set -gx PATH "$HOME/.pack/bin:$HOME/.idris2/bin:$PATH"
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME; set -gx PATH $HOME/.cabal/bin $PATH /home/appositum/.ghcup/bin # ghcup-env
+
+# LEAN lang
+set -gx PATH "$HOME/.elan/bin:$PATH"
