@@ -1,7 +1,13 @@
-alias inst='sudo apt install'
-alias remove='sudo apt remove'
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
+# alias inst='sudo apt install'
+# alias remove='sudo apt remove'
+# alias update='sudo apt update'
+# alias upgrade='sudo apt upgrade'
+
+# arch
+alias inst='yay -S'
+alias update='yay'
+alias remove='yay -Rns'
+
 alias ls='eza --icons=always'
 
 alias tarxz='tar xvf'
