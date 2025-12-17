@@ -8,8 +8,9 @@ alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
+# apparently it's only "batcat" on debian
 if test -e /usr/bin/batcat
-  alias cat='batcat --theme base16'
+  alias bat='batcat --theme base16'
 end
 
 alias tmuxl='tmux list-sessions'
