@@ -1,0 +1,12 @@
+[general]
+import = [
+  "./catppuccin_mocha.toml"
+]
+
+[font]
+normal = { family = "Mononoki Nerd Font Mono", style = "Bold" }
+italic = { family = "Mononoki Nerd Font Mono", style = "Bold Italic" }
+size = 13
+
+[terminal]
+shell.program = "wsl"
