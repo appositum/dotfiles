@@ -50,17 +50,17 @@ function fish_greeting
 end
 
 function fish_title
-  set os (cat /etc/*-release | sed -En 's/^NAME="(.*)"/\1/p')
-
-  if test -e hostname
-    set h (hostname)
-  else
-    set h (hostnamectl hostname)
-  end
+  # set os (cat /etc/*-release | sed -En 's/^NAME="(.*)"/\1/p')
+  #
+  # if test -e hostname
+  #   set h (hostname)
+  # else
+  #   set h (hostnamectl hostname)
+  # end
 
   set d (dirs)
 
-  echo "$d ❯ $os ❯ $h"
+  echo "$d"
 end
 
 set red "\033[0;31m"
