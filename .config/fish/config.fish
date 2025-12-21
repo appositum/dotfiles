@@ -157,8 +157,6 @@ function fish_prompt
   end
 end
 
-# eval (opam env)
-
 set -gx PATH "$HOME/.local/share/bin:$PATH"
 
 set -gx PATH "$HOME/.cargo/bin:$PATH"
