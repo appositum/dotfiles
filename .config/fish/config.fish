@@ -77,7 +77,12 @@ function fish_right_prompt
 end
 
 function parse_git_branch
-  set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
+  set -l branch_name (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
+  set -l branch_rebasing (echo $branch_name | grep -e '^(no branch, rebasing')
+  set -l branch_detached (echo $branch_name | grep -e '^(HEAD detached')
+  set -l branch_conflict (git status 2> /dev/null | sed -n '2p' | grep -e 'You have unmerged paths.')
+  set -l branch_merging (git status 2> /dev/null | sed -n '2p' | grep -e 'All conflicts fixed but you are still merging.')
+
   set -l git_status (git status -s)
 
   set -l unstaged_add (git status -s | grep '^??')
@@ -90,6 +95,8 @@ function parse_git_branch
   set -l staged_mod (git status -s | grep '^M')
   set -l rename (git status -s | grep '^R')
 
+  set -l unmerged_paths (git status -s | grep '^UU')
+
   set -l icon_unstaged_add ""
   set -l icon_unstaged_del ""
   set -l icon_unstaged_mod ""
@@ -98,6 +105,8 @@ function parse_git_branch
   set -l icon_staged_del ""
   set -l icon_staged_mod ""
   set -l icon_ren ""
+
+  set -l icon_unmerged_paths ""
 
   if test -n "$unstaged_add"
     set icon_unstaged_add (printf "\uf0fe ")
@@ -108,7 +117,7 @@ function parse_git_branch
   end
 
   if test -n "$unstaged_mod"; or test -n "$half_staged_mod"
-    set icon_unstaged_mod (printf "\uea71 ")
+    set icon_unstaged_mod (printf "\uf0c8 ")
   end
 
   if test -n "$staged_add"
@@ -120,20 +129,37 @@ function parse_git_branch
   end
 
   if test -n "$staged_mod"
-    set icon_staged_mod (printf "\uea71 ")
+    set icon_staged_mod (printf "\uf0c8 ")
   end
 
   if test -n "$rename"
     set icon_ren (printf "\uf443 ")
   end
 
-  set -l unstaged (set_color red; printf '%s%s%s' (echo -e $icon_unstaged_mod) (echo -e $icon_unstaged_add) (echo -e $icon_unstaged_del); set_color white)
+  if test -n "$unmerged_paths"
+    set icon_unmerged_paths (printf "\uf440 ")
+  end
+
+  set -l unstaged (set_color red; printf '%s%s%s%s' (echo -e $icon_unmerged_paths) (echo -e $icon_unstaged_mod) (echo -e $icon_unstaged_add) (echo -e $icon_unstaged_del); set_color white)
   set -l staged (set_color green; printf '%s%s%s%s' (echo -e $icon_staged_mod) (echo -e $icon_staged_add) (echo -e $icon_staged_del) (echo -e $icon_ren); set_color white)
 
+  set -l git_fork (set_color cyan; printf '\uf126')
+
+  if test -n "$branch_rebasing"
+    set git_fork (set_color cyan; printf '\ue727')
+  else if test -n "$branch_detached"
+    set git_fork (set_color cyan; printf '\ueafc')
+  else if test -n "$branch_conflict"
+    set git_fork (set_color cyan; printf '\ue728')
+  else if test -n "$branch_merging"
+    set git_fork (set_color cyan; printf '\ue726')
+  end
+
+  printf '%s ' (echo $git_fork) # default icon
   if test -n "$git_status"
-    printf '%s%s%s %s%s' (echo -e $yellow) (echo -e $branch) (echo -e $white) (echo -e $unstaged) (echo -e $staged)
+    printf '%s%s%s %s%s' (echo -e $yellow) (echo -e $branch_name) (echo -e $white) (echo -e $unstaged) (echo -e $staged)
   else
-    printf '%s%s%s' (echo -e $green) (echo -e $branch) (echo -e $white)
+    printf '%s%s%s' (echo -e $green) (echo -e $branch_name) (echo -e $white)
   end
 end
 
@@ -151,7 +177,7 @@ function fish_prompt
   end
 
   if test -n "$git_dir"
-    printf ' %s %s %s\n%s' (echo $prompt_pwd) (echo $git_fork) (parse_git_branch) (echo $prompt_cmd)
+    printf ' %s %s\n%s' (echo $prompt_pwd) (parse_git_branch) (echo $prompt_cmd)
   else
     printf ' %s\n%s' (echo $prompt_pwd) (echo $prompt_cmd)
   end
