@@ -16,9 +16,9 @@ alias tarbz2='tar jxvf'
 
 # apparently it's only "batcat" on debian
 if test -e /usr/bin/batcat
-  alias bat='batcat --theme base16'
+  alias bat='batcat --theme base16 --decorations=never'
 else
-  alias bat='bat --theme base16'
+  alias bat='bat --theme base16 --decorations=never'
 end
 
 alias tmuxl='tmux list-sessions'
