@@ -21,6 +21,25 @@ else
   alias bat='bat --theme base16 --decorations=never'
 end
 
+function json
+  $argv | python -m json.tool | bat -l json --decorations=never --paging=never
+end
+
+function req -a method url data
+  switch $method
+    case 'get'
+      curl -sS -X $method $url
+    case 'post'
+      curl -sS --header "Content-Type: application/json" -X $method $url -d $data
+    case 'put'
+      curl -sS --header "Content-Type: application/json" -X $method $url -d $data
+    case 'patch'
+      curl -sS --header "Content-Type: application/json" -X $method $url -d $data
+    case 'delete'
+      curl -sS -X $method $url
+  end
+end
+
 alias tmuxl='tmux list-sessions'
 alias tmuxk='tmux kill-session -t'
 alias tmuxs='tmux switch -t'
