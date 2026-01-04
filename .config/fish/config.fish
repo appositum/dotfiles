@@ -235,7 +235,7 @@ tmux source ~/.tmux.conf
 set -gx PATH "$HOME/.local/share/nvim/mason/bin:$PATH"
 set -gx PATH "$HOME/.pack/bin:$HOME/.idris2/bin:$PATH"
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME; set -gx PATH $HOME/.cabal/bin $PATH /home/appositum/.ghcup/bin # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME; set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 
 # LEAN lang
 set -gx PATH "$HOME/.elan/bin:$PATH"
