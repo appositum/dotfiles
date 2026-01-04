@@ -92,8 +92,8 @@ set white "\033[01;37m"
 set white_thin "\033[0;37m"
 set reset "\033[00m"
 
-function fish_right_prompt
-end
+# function fish_right_prompt
+# end
 
 function parse_git_branch
   set -l branch_name (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
