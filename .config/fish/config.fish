@@ -8,7 +8,7 @@ alias inst='yay -S'
 alias update='yay'
 alias remove='yay -Rns'
 
-alias ls='eza --icons=always'
+alias ls='eza --icons=always -s type'
 
 alias tarxz='tar xvf'
 alias targz='tar zxvf'
