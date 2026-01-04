@@ -220,3 +220,6 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME; set
 
 # LEAN lang
 set -gx PATH "$HOME/.elan/bin:$PATH"
+
+# swi-prolog
+set -gx PATH "$HOME/.prolog/bin:$PATH"
