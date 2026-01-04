@@ -163,6 +163,11 @@ function parse_git_branch
   end
 end
 
+# fish :)
+# ⋊>
+# ⧕>
+# ⋊›
+# ⧕›
 function fish_prompt
   set -l last_status $status
   set -l git_fork (set_color cyan; printf '\uf126')
