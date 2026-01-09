@@ -188,6 +188,8 @@ end
 # ⧕>
 # ⋊›
 # ⧕›
+# ❯
+
 function fish_prompt
   set -l last_status $status
   set -l git_fork (set_color cyan; printf '\uf126')
@@ -196,9 +198,9 @@ function fish_prompt
   set -l prompt_cmd
 
   if [ $last_status -ne 0 ]
-    set prompt_cmd (printf ' %s❯ %s' (echo -e $red) (echo -e $reset))
+    set prompt_cmd (printf ' %sλ %s' (echo -e $red) (echo -e $reset))
   else
-    set prompt_cmd (printf ' %s❯ %s' (echo -e $purple) (echo -e $reset))
+    set prompt_cmd (printf ' %sλ %s' (echo -e $purple) (echo -e $reset))
   end
 
   if test -n "$git_dir"
