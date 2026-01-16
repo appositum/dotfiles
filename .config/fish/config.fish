@@ -93,7 +93,7 @@ set white_thin "\033[0;37m"
 set reset "\033[00m"
 
 function fish_right_prompt
-  printf '%s ' (set_color brblack; date +'%H:%M:%S'; set_color reset)
+  printf '%s ' (set_color black; date +'%H:%M:%S'; set_color reset)
 end
 
 function parse_git_branch
