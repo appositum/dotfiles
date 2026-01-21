@@ -245,3 +245,6 @@ set -gx PATH "$HOME/.elan/bin:$PATH"
 
 # swi-prolog
 set -gx PATH "$HOME/.prolog/bin:$PATH"
+
+# asdf
+set -gx PATH "$HOME/.asdf/shims:$PATH"
