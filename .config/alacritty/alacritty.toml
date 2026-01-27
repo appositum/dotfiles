@@ -4,12 +4,13 @@ import = [
 ]
 
 [font]
-normal = { family = "Mononoki Nerd Font Mono", style = "Bold" }
-italic = { family = "Mononoki Nerd Font Mono", style = "Bold Italic" }
-size = 13.5
+#normal = { family = "Mononoki Nerd Font Mono", style = "Bold" }
+#italic = { family = "Mononoki Nerd Font Mono", style = "Bold Italic" }
+normal = { family = "DepartureMono Nerd Font Mono", style = "Regular"}
+size = 12
 
 [terminal]
-shell.program = "wsl"
+shell.program = "wsl ~"
 
 [window]
 dimensions = { columns = 97, lines = 32 }
