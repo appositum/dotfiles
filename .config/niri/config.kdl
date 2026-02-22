@@ -141,8 +141,8 @@ layout {
         // urgent-color "#f38ba8" // catppuccin
 
         active-color "#76946A" // kanagawa
-        inactive-color "#2A2A37" // kanagawa
-        urgent-color "#C34043" // kanagawa
+        inactive-color "#1F1F28" // kanagawa
+        urgent-color "#FF5D62" // kanagawa
     }
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -227,11 +227,11 @@ layout {
         active-color "#76946A" // kanagawa
 
         // inactive-color "#313244AA" // catppuccin
-        inactive-color "#1E1F28AA" // kanagawa
+        inactive-color "#2A2A37AA" // kanagawa
 
         // Color of the border around windows that request your attention.
         // urgent-color "#f38ba8" // catppuccin
-        urgent-color "#C34043" // kanagawa
+        urgent-color "#FF5D62" // kanagawa
 
         // Gradients can use a few different interpolation color spaces.
         // For example, this is a pastel rainbow gradient via in="oklch longer hue".
