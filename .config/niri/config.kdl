@@ -135,7 +135,7 @@ layout {
         // gap 8
         // length total-proportion=1.0
         place-within-column
-        corner-radius 10
+        corner-radius 12
         // active-color "#cba6f7" // catppuccin
         // inactive-color "#1e1e2eAA" // catppuccin
         // urgent-color "#f38ba8" // catppuccin
