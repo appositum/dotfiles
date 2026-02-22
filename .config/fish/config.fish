@@ -1,3 +1,43 @@
+# == BEGIN KANAGAWA THEME ==
+
+# Kanagawa Fish shell theme
+# A template was taken and modified from Tokyonight:
+# https://github.com/folke/tokyonight.nvim/blob/main/extras/fish_tokyonight_night.fish
+set -l foreground DCD7BA normal
+set -l selection 2D4F67 brcyan
+set -l comment 727169 brblack
+set -l red C34043 red
+set -l orange FF9E64 brred
+set -l yellow C0A36E yellow
+set -l green 76946A green
+set -l purple 957FB8 magenta
+set -l cyan 7AA89F cyan
+set -l pink D27E99 brmagenta
+
+# Syntax Highlighting Colors
+set -g fish_color_normal $foreground
+set -g fish_color_command $cyan
+set -g fish_color_keyword $pink
+set -g fish_color_quote $yellow
+set -g fish_color_redirection $foreground
+set -g fish_color_end $orange
+set -g fish_color_error $red
+set -g fish_color_param $purple
+set -g fish_color_comment $comment
+set -g fish_color_selection --background=$selection
+set -g fish_color_search_match --background=$selection
+set -g fish_color_operator $green
+set -g fish_color_escape $pink
+set -g fish_color_autosuggestion $comment
+
+# Completion Pager Colors
+set -g fish_pager_color_progress $comment
+set -g fish_pager_color_prefix $cyan
+set -g fish_pager_color_completion $foreground
+set -g fish_pager_color_description $comment
+
+# ==   END KANAGAWA THEME ==
+
 # alias inst='sudo apt install'
 # alias remove='sudo apt remove'
 # alias update='sudo apt update'
@@ -84,18 +124,18 @@ function fish_title
   echo "$d"
 end
 
-set red "\033[01;31m"
-set green "\033[0;32m"
-set yellow "\033[0;33m"
-set blue "\033[0;34m"
-set purple "\033[01;35m"
-set cyan "\033[01;36m"
-set white "\033[01;37m"
-set white_thin "\033[0;37m"
-set reset "\033[00m"
+# set red "\033[01;31m"
+# set green "\033[0;32m"
+# set yellow "\033[0;33m"
+# set blue "\033[0;34m"
+# set purple "\033[01;35m"
+# set cyan "\033[01;36m"
+# set white "\033[01;37m"
+# set white_thin "\033[0;37m"
+# set reset "\033[00m"
 
 function fish_right_prompt
-  printf '%s ' (set_color black; date +'%H:%M:%S'; set_color reset)
+  printf '%s' (set_color brblack; date +'%H:%M:%S'; set_color reset)
 end
 
 function parse_git_branch
@@ -179,9 +219,9 @@ function parse_git_branch
 
   printf '%s ' (echo $git_fork) # default icon
   if test -n "$git_status"
-    printf '%s%s%s %s%s' (echo -e $yellow) (echo -e $branch_name) (echo -e $white) (echo -e $unstaged) (echo -e $staged)
+    printf '%s%s%s %s%s' (set_color yellow) (echo -e $branch_name) (set_color white) (echo -e $unstaged) (echo -e $staged)
   else
-    printf '%s%s%s' (echo -e $green) (echo -e $branch_name) (echo -e $white)
+    printf '%s%s%s' (set_color green) (echo -e $branch_name) (set_color white)
   end
 end
 
@@ -196,13 +236,13 @@ function fish_prompt
   set -l last_status $status
   set -l git_fork (set_color cyan; printf '\uf126')
   set -l git_dir (git rev-parse --git-dir 2> /dev/null)
-  set -l prompt_pwd (printf '%s%s' (echo -e $white) (prompt_pwd))
+  set -l prompt_pwd (printf '%s%s' (set_color white) (prompt_pwd))
   set -l prompt_cmd
 
   if [ $last_status -ne 0 ]
-    set prompt_cmd (printf ' %sλ %s' (echo -e $red) (echo -e $reset))
+    set prompt_cmd (printf ' %sλ %s' (set_color red) (set_color reset))
   else
-    set prompt_cmd (printf ' %sλ %s' (echo -e $purple) (echo -e $reset))
+    set prompt_cmd (printf ' %sλ %s' (set_color purple) (set_color reset))
   end
 
   if test -n "$git_dir"
