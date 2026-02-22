@@ -14,6 +14,8 @@ alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
+alias icat='kitty icat'
+
 # apparently it's only "batcat" on debian
 if test -e /usr/bin/batcat
   alias bat='batcat --theme base16 --decorations=never'
@@ -230,9 +232,9 @@ tmux source ~/.tmux.conf
 
 # ssh agent
 # if test -z (pgrep ssh-agent | string collect)
-#     eval (ssh-agent -c)
-#     set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-#     set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+#   eval (ssh-agent -c)
+#   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+#   set -Ux SSH_AGENT_PID $SSH_AGENT_PID
 # end
 
 set -gx PATH "$HOME/.local/share/nvim/mason/bin:$PATH"
