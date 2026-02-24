@@ -561,6 +561,10 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
+    Mod+MouseBack    { focus-column-left; }
+    Mod+MouseForward { focus-column-right; }
+    Mod+MouseMiddle  { close-window; }
+
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
     // discrete intervals.
@@ -687,7 +691,7 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    // Mod+Shift+P { power-off-monitors; }
+    Mod+Ctrl+Alt+P { power-off-monitors; }
 }
 
 cursor {
