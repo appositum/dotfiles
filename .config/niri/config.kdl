@@ -401,7 +401,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Return hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Super+Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "$HOME/.scripts/locker.sh"; }
@@ -607,7 +607,8 @@ binds {
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
+    // Mod+Tab { focus-window-previous; }
+    // Mod+Grave { focus-workspace-previous; }
 
     // The following binds move the focused window in and out of a column.
     // If the window is alone, they will consume it into the nearby column to the side.
@@ -672,6 +673,7 @@ binds {
 
     Mod+Shift+S { screenshot; }
     Print { screenshot; }
+    Mod+Print { spawn-sh "$HOME/.scripts/screenshot/crop_preview.sh"; }
     Alt+Print { screenshot-screen; }
     Ctrl+Print { screenshot-window; }
 
