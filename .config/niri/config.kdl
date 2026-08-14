@@ -419,7 +419,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Return hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Super+Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "$HOME/.scripts/locker.sh"; }
