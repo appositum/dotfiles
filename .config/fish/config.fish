@@ -240,9 +240,9 @@ function fish_prompt
   set -l prompt_cmd
 
   if [ $last_status -ne 0 ]
-    set prompt_cmd (printf ' %sλ %s' (set_color red) (set_color reset))
+    set prompt_cmd (printf ' %sλ %s' (set_color --bold red) (set_color reset))
   else
-    set prompt_cmd (printf ' %sλ %s' (set_color purple) (set_color reset))
+    set prompt_cmd (printf ' %sλ %s' (set_color --bold purple) (set_color reset))
   end
 
   if test -n "$git_dir"
