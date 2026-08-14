@@ -380,6 +380,24 @@ window-rule {
     open-maximized true
 }
 
+window-rule {
+    match title=r#"^Friends List$"#
+    open-floating true
+}
+
+window-rule {
+    match title=r#"^Steam$"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"^org.gnome.Calculator$"#
+    open-floating true
+
+    min-width 364
+    min-height 620
+}
+
 layer-rule {
     match namespace="^noctalia-overview*"
     place-within-backdrop true
@@ -444,6 +462,8 @@ binds {
     // but you need to manually put each argument in separate "" quotes.
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
+
+    XF86Calculator { spawn "gnome-calculator"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
