@@ -721,6 +721,10 @@ cursor {
     xcursor-size 30
 }
 
+clipboard {
+    disable-primary
+}
+
 // spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
 
 // include "./noctalia.kdl"
