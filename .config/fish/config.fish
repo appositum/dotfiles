@@ -54,7 +54,7 @@ alias tarxz='tar xvf'
 alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
-alias icat='kitty icat'
+alias icat='chafa'
 
 # apparently it's only "batcat" on debian
 if test -e /usr/bin/batcat
