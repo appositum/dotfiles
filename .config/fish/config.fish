@@ -49,6 +49,7 @@ alias update='yay'
 alias remove='yay -Rns'
 
 alias ls='eza --icons=always -s type'
+alias l='eza --icons=always -s type'
 
 alias tarxz='tar xvf'
 alias targz='tar zxvf'
@@ -252,6 +253,7 @@ function fish_prompt
   end
 end
 
+set -gx PATH "$HOME/.local/bin:$PATH"
 set -gx PATH "$HOME/.local/share/bin:$PATH"
 
 set -gx PATH "$HOME/.cargo/bin:$PATH"
