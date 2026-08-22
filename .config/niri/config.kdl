@@ -651,7 +651,7 @@ binds {
     // Cycling through the presets in reverse order is also possible.
     // Mod+R { switch-preset-column-width-back; }
     Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
+    Mod+Ctrl+F { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+F11 { fullscreen-window; }
 
