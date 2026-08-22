@@ -731,6 +731,10 @@ clipboard {
     disable-primary
 }
 
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+
 spawn-at-startup "noctalia"
 
 // include "./noctalia.kdl"
