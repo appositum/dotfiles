@@ -421,7 +421,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+Return hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Super+Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "$HOME/.scripts/locker.sh"; }
     Mod+Escape hotkey-overlay-title="Open session manager" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
 
@@ -726,6 +726,6 @@ clipboard {
     disable-primary
 }
 
-// spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
+spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
 
 // include "./noctalia.kdl"
