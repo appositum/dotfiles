@@ -398,8 +398,13 @@ window-rule {
     min-height 620
 }
 
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+}
+
 layer-rule {
-    match namespace="^noctalia-overview*"
+    match namespace="^noctalia-backdrop"
     place-within-backdrop true
 }
 
@@ -421,9 +426,9 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "foot"; }
     // Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "noctalia msg panel-open launcher"; }
     Super+Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "$HOME/.scripts/locker.sh"; }
-    Mod+Escape hotkey-overlay-title="Open session manager" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Escape hotkey-overlay-title="Open session manager" { spawn-sh "noctalia msg panel-open session"; }
 
     Mod+E hotkey-overlay-title="Open file explorer: nautilus" { spawn "nautilus"; }
     Mod+Y hotkey-overlay-title="Open file explorer: yazi" { spawn-sh "foot yazi"; }
@@ -435,12 +440,12 @@ binds {
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     Mod+Shift+B hotkey-overlay-title="Open private browser window: waterfox" { spawn-sh "waterfox --private-window"; }
-    Mod+Shift+C hotkey-overlay-title="Open control center" { spawn-sh "qs -c noctalia-shell ipc call controlCenter toggle"; }
+    Mod+Shift+C hotkey-overlay-title="Open control center" { spawn-sh "noctalia msg panel-open control-center"; }
     // Mod+Shift+T hotkey-overlay-title="Toggle dark mode" { spawn-sh "qs -c noctalia-shell ipc call darkMode toggle"; }
-    Mod+N hotkey-overlay-title="Open notes scratchpad" { spawn-sh "qs -c noctalia-shell ipc call plugin togglePanel notes-scratchpad"; }
     Mod+Shift+N hotkey-overlay-title="Open TODO list" { spawn-sh "qs -c noctalia-shell ipc call plugin togglePanel todo"; }
-    Mod+Ctrl+V hotkey-overlay-title="Open clipboard history" { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
     Mod+Shift+P hotkey-overlay-title="Pick color from screen" { spawn-sh "niri msg pick-color | cut -d ' ' -f 2 | tail -1 | wl-copy -n"; }
+    Mod+N hotkey-overlay-title="Open notes scratchpad" { spawn-sh "noctalia msg panel-toggle noctalia/notes:panel"; }
+    Mod+Ctrl+V hotkey-overlay-title="Open clipboard history" { spawn-sh "noctalia msg panel-open clipboard"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -726,6 +731,6 @@ clipboard {
     disable-primary
 }
 
-spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
+spawn-at-startup "noctalia"
 
 // include "./noctalia.kdl"
