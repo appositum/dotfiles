@@ -136,7 +136,7 @@ end
 # set reset "\033[00m"
 
 function fish_right_prompt
-  printf '%s' (set_color brblack; date +'%H:%M:%S'; set_color reset)
+  printf '%s' (set_color brblack; date +'%H:%M:%S '; set_color reset)
 end
 
 function parse_git_branch
