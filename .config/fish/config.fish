@@ -75,10 +75,6 @@ function req -a method url data
   end
 end
 
-alias tmuxl='tmux list-sessions'
-alias tmuxk='tmux kill-session -t'
-alias tmuxs='tmux switch -t'
-
 alias gita='git add -A'
 alias gits='git status'
 alias gitd='git diff'
@@ -258,14 +254,6 @@ set -x GPG_TTY (tty)
 # git commit
 set -x VISUAL vim
 
-# tmux
-# if status is-interactive
-# and not set -q TMUX
-#   exec tmux -u
-# end
-#
-# tmux source ~/.tmux.conf
-
 # ssh agent
 # if test -z (pgrep ssh-agent | string collect)
 #   eval (ssh-agent -c)
@@ -287,3 +275,16 @@ set -gx PATH "$HOME/.prolog/bin:$PATH"
 
 # asdf
 set -gx PATH "$HOME/.asdf/shims:$PATH"
+
+# tmux
+if status is-interactive
+and not set -q TMUX
+  # exec tmux new-session -As0
+  # exec tmux -u
+end
+
+# tmux source ~/.tmux.conf
+
+alias tmuxl='tmux list-sessions'
+alias tmuxk='tmux kill-session -t'
+alias tmuxs='tmux switch -t'
