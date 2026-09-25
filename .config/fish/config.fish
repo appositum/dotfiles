@@ -227,7 +227,7 @@ function fish_prompt
   set -l last_status $status
   set -l git_fork (set_color cyan; printf '\uf126')
   set -l git_dir (git rev-parse --git-dir 2> /dev/null)
-  set -l prompt_pwd (printf '%s%s' (set_color white) (prompt_pwd))
+  set -l prompt_pwd (printf '%s%s' (set_color white) (dirs))
   set -l prompt_cmd
 
   if [ $last_status -ne 0 ]
