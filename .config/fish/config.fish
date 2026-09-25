@@ -233,6 +233,8 @@ end
 # ⧕›
 # ❯
 
+set -g fish_prompt_pwd_dir_length 3
+
 function fish_prompt
   set -l last_status $status
   set -l git_fork (set_color cyan; printf '\uf126')
