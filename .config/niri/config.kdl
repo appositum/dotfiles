@@ -90,7 +90,8 @@ output "DP-1" {
     mode "2560x1440@164.958"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.25
+    scale 1
+    // gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -105,7 +106,7 @@ output "DP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1536 y=0 // should be 1920 if using scale 1. divide by scale number
+    position x=1920 y=0 // should be 1920 if using scale 1. divide by scale number
 }
 
 output "eDP-1" {
@@ -116,8 +117,8 @@ output "eDP-1" {
     // |       |  |        |
     //  -------    --------
     mode "1920x1080@165.004"
-    scale 1.25
-    position x=0 y=288 // should be 360 if using scale 1
+    scale 1
+    position x=0 y=360 // should be 360 if using scale 1
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -748,6 +749,10 @@ clipboard {
 
 xwayland-satellite {
     path "xwayland-satellite"
+}
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 spawn-at-startup "noctalia"
