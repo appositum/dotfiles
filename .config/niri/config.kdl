@@ -359,7 +359,7 @@ window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"waterfox$"# title="^Picture-in-Picture$"
+    match app-id=r#"^waterfox$"# title="^Picture-in-Picture$"
     open-floating true
 }
 
@@ -421,8 +421,8 @@ window-rule {
 window-rule {
     match app-id="localsend_app$"
     open-floating true
-    min-width 424
-    min-height 524
+    min-width 428
+    min-height 580
 }
 
 layer-rule {
