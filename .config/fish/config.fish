@@ -51,11 +51,11 @@ alias icat='chafa'
 alias btop='~/.scripts/btop_theme_switch.py'
 
 # apparently it's only "batcat" on debian
-if test -e /usr/bin/batcat
-  alias bat='batcat --theme base16 --decorations=never'
-else
-  alias bat='bat --theme base16 --decorations=never'
-end
+# if test -e /usr/bin/batcat
+#   alias bat='batcat --theme base16 --decorations=never'
+# else
+#   alias bat='bat --theme base16 --decorations=never'
+# end
 
 function json
   $argv | python -m json.tool | bat -l json --decorations=never --paging=never
@@ -221,6 +221,7 @@ end
 # ⋊›
 # ⧕›
 # ❯
+# ⛧
 
 set -g fish_prompt_pwd_dir_length 3
 
