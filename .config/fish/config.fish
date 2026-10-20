@@ -48,6 +48,7 @@ alias targz='tar zxvf'
 alias tarbz2='tar jxvf'
 
 alias icat='chafa'
+alias btop='~/.scripts/btop_theme_switch.py'
 
 # apparently it's only "batcat" on debian
 if test -e /usr/bin/batcat
