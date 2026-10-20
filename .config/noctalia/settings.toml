@@ -2,3 +2,6 @@
 enabled = true
 blur_intensity = 0.3
 tint_intensity = 0
+
+[audio]
+sound_volume = 1
